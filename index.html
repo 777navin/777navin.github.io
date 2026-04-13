@@ -1,80 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Navin Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI';
-      background: #0f172a;
-      color: white;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navin | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-base: #030712;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --neon-cyan: #00f0ff;
+            --neon-purple: #8b5cf6;
+            --glass-bg: rgba(17, 24, 39, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-highlight: rgba(0, 240, 255, 0.15);
+        }
 
-    header {
-      text-align: center;
-      padding: 50px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    h1 {
-      color: #38bdf8;
-      font-size: 40px;
-    }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.7;
+            position: relative;
+        }
 
-    .section {
-      padding: 30px;
-      text-align: center;
-    }
+        /* --- Premium Background Effects --- */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -3;
+            pointer-events: none;
+        }
 
-    .card {
-      background: #1e293b;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-      width: 250px;
-    }
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -2;
+            opacity: 0.4;
+            animation: floatOrb 15s infinite alternate ease-in-out;
+        }
 
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-    }
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-cyan);
+            top: -10%;
+            left: -10%;
+        }
 
-  </style>
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--neon-purple);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 100px) scale(1.2); }
+            100% { transform: translate(-50px, -50px) scale(0.9); }
+        }
+
+        /* --- Layout & Typography --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 120px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        /* --- Glassmorphism UI --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            border-color: var(--glass-highlight);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                        inset 0 0 20px rgba(0, 240, 255, 0.05);
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 0;
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        /* --- Hero Section --- */
+        #hero { text-align: center; }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            margin-bottom: 24px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        #hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+        }
+
+        .typing-container {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            height: 40px;
+        }
+
+        .btn-glow {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            color: #000;
+            background: linear-gradient(90deg, var(--neon-cyan), #00b3ff);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
+
+        /* --- Grid Sections (Skills & Projects) --- */
+        .skills-grid, .projects-grid, .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* --- Skills Details --- */
+        .skill-item i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .skill-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .skill-item p { color: var(--text-muted); font-size: 1rem; }
+
+        /* --- Projects Details --- */
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            min-height: 80px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .project-link i { font-size: 1.5rem; }
+        .project-link:hover { text-shadow: 0 0 15px var(--neon-cyan); gap: 15px; }
+
+        /* --- Achievements Details --- */
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .achievement-item i {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+        }
+
+        /* --- Contact --- */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .contact-icon:hover {
+            color: #fff;
+            transform: translateY(-10px) scale(1.1);
+            filter: drop-shadow(0 10px 20px var(--neon-cyan));
+        }
+
+        /* --- Utilities & Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            section { padding: 80px 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Hi, I'm Navin 👋</h1>
-  <p>Software Engineer | DSA | Web Dev</p>
-</header>
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-<div class="section">
-  <h2>🚀 Projects</h2>
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">&lt;Navin /&gt;</a>
+        </div>
+    </nav>
 
-  <div class="card">
-    <h3>Project 1</h3>
-    <p>Coming soon</p>
-  </div>
+    <section id="hero">
+        <div class="container fade-in">
+            <div class="hero-badge">Welcome to my universe</div>
+            <h1>Hi, I'm <span class="gradient-text">Navin</span></h1>
+            <div class="typing-container">
+                <span id="typing-text"></span><span class="cursor" style="color: var(--neon-cyan);">_</span>
+            </div>
+            <a href="#projects" class="btn-glow">Explore My Work</a>
+        </div>
+    </section>
 
-  <div class="card">
-    <h3>Project 2</h3>
-    <p>Coming soon</p>
-  </div>
+    <section id="about">
+        <div class="container fade-in">
+            <h2 class="section-title gradient-text">About Me</h2>
+            <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: center; padding: 50px;">
+                <p style="font-size: 1.25rem; color: var(--text-muted);">
+                    I am a 3rd-year Information Technology student (Batch of 2027) engineered for problem-solving. My core runtime environment is built on <span style="color: #fff; font-weight: 600;">C++</span> and <span style="color: #fff; font-weight: 600;">Data Structures & Algorithms</span>. I thrive in competitive programming arenas like LeetCode and Codeforces. Beyond the terminal, I architect responsive web applications and explore the boundaries of Cloud Computing and IoT.
+                </p>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <section id="skills">
+        <div class="container fade-in">
+            <h2 class="section-title gradient-text">Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="glass-card skill-item tilt-element">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3>C++ Ecosystem</h3>
+                    <p>Advanced STL, Fast I/O mechanics, and Object-Oriented paradigms for optimal performance.</p>
+                </div>
+                <div class="glass-card skill-item tilt-element">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <h3>Core DSA</h3>
+                    <p>Deep understanding of algorithmic complexity, graph theory, and dynamic programming.</p>
+                </div>
+                <div class="glass-card skill-item tilt-element">
+                    <i class="fa-solid fa-khanda"></i>
+                    <h3>Competitive Coding</h3>
+                    <p>Battle-tested problem solver across global arenas like LeetCode, Codeforces, and CodeChef.</p>
+                </div>
+                <div class="glass-card skill-item tilt-element">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Web Technologies</h3>
+                    <p>Crafting immersive digital experiences using modern HTML, CSS, and modular JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-  <h2>🧠 Skills</h2>
-  <p>C++, DSA, HTML, CSS, JavaScript</p>
-</div>
+    <section id="projects">
+        <div class="container fade-in">
+            <h2 class="section-title gradient-text">Featured Builds</h2>
+            <div class="projects-grid">
+                
+                <div class="glass-card project-card tilt-element">
+                    <h3>DSA Tracker Protocol</h3>
+                    <p>A specialized analytics dashboard built to monitor daily DSA velocity, dissect algorithmic patterns, and schedule optimal revision cycles.</p>
+                    <a href="https://github.com/777navin" target="_blank" class="project-link">
+                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
 
-<div class="section">
-  <h2>📞 Contact</h2>
-  <p>Email: your@email.com</p>
-  <p><a href="#">GitHub</a></p>
-</div>
+                <div class="glass-card project-card tilt-element">
+                    <h3>V2 Portfolio UI</h3>
+                    <p>A high-performance, responsive developer portfolio utilizing advanced glassmorphism, dynamic glowing elements, and vanilla JS physics.</p>
+                    <a href="https://github.com/777navin" target="_blank" class="project-link">
+                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
 
+                <div class="glass-card project-card tilt-element">
+                    <h3>Data Intelligence (EDA)</h3>
+                    <p>Processed and visualized massive datasets (Airbnb/Netflix) using Python and Pandas to extract actionable market insights.</p>
+                    <a href="https://github.com/777navin" target="_blank" class="project-link">
+                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="container fade-in">
+            <h2 class="section-title gradient-text">Milestones</h2>
+            <div class="achievements-grid">
+                
+                <div class="glass-card achievement-item tilt-element">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <div>
+                        <h3 style="font-size: 1.4rem;">Top 7 Ranking</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Institutional Academic Leader</p>
+                    </div>
+                </div>
+
+                <div class="glass-card achievement-item tilt-element">
+                    <i class="fa-solid fa-bolt"></i>
+                    <div>
+                        <h3 style="font-size: 1.4rem;">HackWithInfy</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Active Competitive Challenger</p>
+                    </div>
+                </div>
+
+                <div class="glass-card achievement-item tilt-element">
+                    <i class="fa-solid fa-brain"></i>
+                    <div>
+                        <h3 style="font-size: 1.4rem;">300+ Solved</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Algorithmic Problem Sets</p>
+                    </div>
+                </div>
+
+                <div class="glass-card achievement-item tilt-element">
+                    <i class="fa-solid fa-cloud"></i>
+                    <div>
+                        <h3 style="font-size: 1.4rem;">Oracle Certified</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Cloud & VOIS Tech Scholar</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container fade-in text-center">
+            <h2 class="section-title gradient-text">Initiate Contact</h2>
+            <div class="glass-card tilt-element" style="max-width: 700px; margin: 0 auto; text-align: center; padding: 60px 40px;">
+                <h3 style="font-size: 2rem; margin-bottom: 20px;">Ready to build something great?</h3>
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px;">System currently accepting connections for 2027 batch opportunities, internships, and algorithmic discussions.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:your@email.com" class="contact-icon" title="Initialize Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://github.com/777navin" target="_blank" class="contact-icon" title="Access GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" target="_blank" class="contact-icon" title="Connect LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--glass-border); color: var(--text-muted); margin-top: 50px;">
+        <div class="container">
+            <p style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">Designed & Engineered by Navin © 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Animation
+        const textArray = ["Software Engineer.", "Competitive Programmer.", "Problem Solver."];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById("typing-text");
+
+        function type() {
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2500; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textArray.length;
+                typeSpeed = 500; // Pause before new word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // 3D Tilt Effect on Cards
+        const cards = document.querySelectorAll('.tilt-element');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation degrees
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        });
+
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(type, 1000);
+            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        });
+
+        // Blinking Cursor
+        setInterval(() => {
+            const cursor = document.querySelector('.cursor');
+            if(cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }, 500);
+    </script>
 </body>
 </html>
