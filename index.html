@@ -1,561 +1,820 @@
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navin | Software Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-base: #030712;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --neon-cyan: #00f0ff;
-            --neon-purple: #8b5cf6;
-            --glass-bg: rgba(17, 24, 39, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.05);
-            --glass-highlight: rgba(0, 240, 255, 0.15);
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Navin — Software Engineer & Competitive Programmer</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.7;
-            position: relative;
-        }
+  <meta name="description" content="Navin — Software Engineer | Competitive Programmer. DSA, CP, Web Dev portfolio." />
 
-        /* --- Premium Background Effects --- */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -3;
-            pointer-events: none;
-        }
+  <style>
+    :root{
+      --bg:#030417;
+      --navy:#071028;
+      --glass-bg: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
+      --accent1: #00f0ff;
+      --accent2: #00a3ff;
+      --muted: rgba(255,255,255,0.6);
+      --card-radius: 14px;
+      --glass-blur: 10px;
+      --max-width: 1100px;
+      --glass-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
 
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -2;
-            opacity: 0.4;
-            animation: floatOrb 15s infinite alternate ease-in-out;
-        }
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,160,255,0.06), transparent 8%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,160,255,0.03), transparent 10%),
+                  linear-gradient(180deg,var(--bg), #02020a 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      scroll-behavior:smooth;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+    }
 
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--neon-cyan);
-            top: -10%;
-            left: -10%;
-        }
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
 
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--neon-purple);
-            bottom: -20%;
-            right: -10%;
-            animation-delay: -5s;
-        }
+    header{
+      position:sticky;
+      top:18px;
+      z-index:40;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:28px;
+    }
 
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 100px) scale(1.2); }
-            100% { transform: translate(-50px, -50px) scale(0.9); }
-        }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:8px 14px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: var(--glass-shadow);
+    }
 
-        /* --- Layout & Typography --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+    .logo-dot{
+      width:36px;height:36px;border-radius:10px;
+      background: linear-gradient(135deg,var(--accent1),var(--accent2));
+      box-shadow: 0 6px 18px rgba(0,160,255,0.12), 0 0 18px rgba(0,160,255,0.08) inset;
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;
+      font-size:14px;
+    }
 
-        section {
-            padding: 120px 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:18px;
+      font-weight:500;
+      transition:color .25s ease, transform .18s ease;
+    }
+    nav a:hover{ color:var(--accent1); transform:translateY(-2px) }
 
-        .gradient-text {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    main{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:36px;
+    }
 
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 60px;
-            text-align: center;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+    /* Glass card base */
+    .glass{
+      background: var(--glass-bg);
+      border:1px solid var(--glass-border);
+      border-radius:var(--card-radius);
+      padding:22px;
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      box-shadow: var(--glass-shadow);
+      transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s ease, border-color .35s ease;
+    }
 
-        /* --- Glassmorphism UI --- */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-        }
+    /* HERO */
+    .hero{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+    }
 
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 24px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.05));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
+    .hero-left{
+      flex:1;
+      min-width:0;
+    }
 
-        .glass-card:hover {
-            border-color: var(--glass-highlight);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
-                        inset 0 0 20px rgba(0, 240, 255, 0.05);
-        }
+    .name{
+      font-size:clamp(28px,5vw,44px);
+      font-weight:700;
+      letter-spacing:-0.6px;
+      margin-bottom:8px;
+      color:linear-gradient(90deg,var(--accent1),var(--accent2));
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
 
-        /* --- Navbar --- */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 0;
-            background: rgba(3, 7, 18, 0.7);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
-        }
+    .title{
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:18px;
+    }
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .typing{
+      display:inline-block;
+      color:var(--accent1);
+      font-weight:600;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      font-size:16px;
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Fira Code', monospace;
-            text-shadow: 0 0 20px var(--neon-cyan);
-        }
+    .hero-cta{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
 
-        /* --- Hero Section --- */
-        #hero { text-align: center; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius:12px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:#e6f9ff;
+      font-weight:600;
+      text-decoration:none;
+      transition: transform .18s ease, box-shadow .25s ease;
+      position:relative;
+      overflow:visible;
+    }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--neon-cyan);
-            margin-bottom: 24px;
-            font-family: 'Fira Code', monospace;
-        }
+    .btn:active{ transform:translateY(1px) }
 
-        #hero h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            letter-spacing: -2px;
-        }
+    /* Neon glowing button */
+    .btn.glow{
+      padding:12px 22px;
+      border-radius:14px;
+      background: linear-gradient(90deg, rgba(0,160,255,0.12), rgba(0,163,255,0.06));
+      box-shadow: 0 6px 30px rgba(0,160,255,0.12), 0 0 30px rgba(0,160,255,0.06) inset;
+      border:1px solid rgba(0,200,255,0.18);
+    }
 
-        .typing-container {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            height: 40px;
-        }
+    .btn.glow::after{
+      content:"";
+      position:absolute;
+      left:-40%;
+      top:-40%;
+      width:180%;
+      height:180%;
+      background: radial-gradient(circle at 20% 20%, rgba(0,240,255,0.06), transparent 10%),
+                  radial-gradient(circle at 80% 80%, rgba(0,160,255,0.04), transparent 10%);
+      pointer-events:none;
+      transition:opacity .3s ease;
+      opacity:1;
+    }
 
-        .btn-glow {
-            display: inline-block;
-            padding: 16px 40px;
-            font-size: 1.1rem;
-            color: #000;
-            background: linear-gradient(90deg, var(--neon-cyan), #00b3ff);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .btn.glow:hover{
+      transform:translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 50px rgba(0,160,255,0.18), 0 0 40px rgba(0,160,255,0.12);
+    }
 
-        .btn-glow:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
-        }
+    .hero-right{
+      width:320px;
+      min-width:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-        /* --- Grid Sections (Skills & Projects) --- */
-        .skills-grid, .projects-grid, .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
+    .profile-card{
+      width:100%;
+      padding:18px;
+      border-radius:14px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
 
-        /* --- Skills Details --- */
-        .skill-item i {
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+    .avatar{
+      width:96px;height:96px;border-radius:18px;margin:0 auto 12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;font-size:28px;
+      box-shadow: 0 10px 30px rgba(0,160,255,0.12);
+    }
 
-        .skill-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .skill-item p { color: var(--text-muted); font-size: 1rem; }
+    .profile-card p{ color:var(--muted); font-size:14px }
 
-        /* --- Projects Details --- */
-        .project-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
-            color: #fff;
-        }
+    /* Sections layout */
+    section{
+      display:grid;
+      gap:18px;
+    }
 
-        .project-card p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 1.05rem;
-            min-height: 80px;
-        }
+    .section-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:12px;
+      margin-bottom:6px;
+    }
 
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+    .section-header h2{
+      font-size:18px;
+      letter-spacing:-0.2px;
+    }
 
-        .project-link i { font-size: 1.5rem; }
-        .project-link:hover { text-shadow: 0 0 15px var(--neon-cyan); gap: 15px; }
+    .about{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
 
-        /* --- Achievements Details --- */
-        .achievement-item {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
+    .about p{ color:var(--muted) }
 
-        .achievement-item i {
-            font-size: 2.5rem;
-            color: var(--neon-purple);
-            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
-        }
+    /* Skills grid */
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:14px;
+    }
 
-        /* --- Contact --- */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
+    .skill{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:14px;
+      border-radius:12px;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+      cursor:default;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    }
 
-        .contact-icon {
-            font-size: 3rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .skill .icon{
+      width:48px;height:48px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(135deg, rgba(0,160,255,0.12), rgba(0,160,255,0.06));
+      border:1px solid rgba(255,255,255,0.03);
+      font-weight:700;color:var(--accent1);
+      box-shadow: 0 6px 18px rgba(0,160,255,0.06);
+    }
 
-        .contact-icon:hover {
-            color: #fff;
-            transform: translateY(-10px) scale(1.1);
-            filter: drop-shadow(0 10px 20px var(--neon-cyan));
-        }
+    .skill h4{ font-size:15px; margin-bottom:4px }
+    .skill p{ font-size:13px; color:var(--muted) }
 
-        /* --- Utilities & Animations --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+    .skill:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 50px rgba(0,160,255,0.08);
+      border-color: rgba(0,200,255,0.18);
+    }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Projects */
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
 
-        @media (max-width: 768px) {
-            #hero h1 { font-size: 3.5rem; }
-            .section-title { font-size: 2.5rem; }
-            section { padding: 80px 0; }
-        }
-    </style>
+    .project{
+      padding:16px;
+      border-radius:12px;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
+      position:relative;
+      overflow:hidden;
+      min-height:140px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .project h3{ margin-bottom:8px }
+    .project p{ color:var(--muted); font-size:14px }
+
+    .project .links{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .project .gh{
+      padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);text-decoration:none;font-weight:600;
+      transition: all .18s ease;
+    }
+
+    .project:hover{
+      transform:translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0,160,255,0.08);
+      border:1px solid rgba(0,200,255,0.12);
+    }
+
+    /* Achievements */
+    .achievements{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .ach{
+      padding:12px 14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border:1px solid rgba(255,255,255,0.03);
+      min-width:180px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.5);
+    }
+
+    .ach h4{ font-size:15px; margin-bottom:6px }
+    .ach p{ color:var(--muted); font-size:13px }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+    }
+
+    .contact-card{
+      display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    }
+
+    .contact-card a{ color:var(--accent1); text-decoration:none; font-weight:600 }
+
+    footer{
+      margin-top:28px;
+      padding:18px;
+      text-align:center;
+      color:var(--muted);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    }
+
+    /* Fade-in reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1);
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* small screens */
+    @media (max-width:880px){
+      .hero{ flex-direction:column; align-items:flex-start; padding:18px }
+      .hero-right{ width:100% }
+      header{ flex-direction:column; align-items:flex-start; gap:12px }
+      nav a{ margin-left:8px }
+    }
+
+    @media (max-width:480px){
+      body{ padding:20px 14px }
+      .brand{ padding:6px 10px }
+      .logo-dot{ width:34px;height:34px;font-size:13px }
+      .btn{ padding:10px 14px; font-size:14px }
+    }
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important }
+    }
+
+    /* small decorative neon lines */
+    .neon-line{
+      position:absolute;
+      height:2px;
+      width:60%;
+      left:10%;
+      top:0;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      opacity:0.06;
+      filter:blur(6px);
+      pointer-events:none;
+    }
+
+    /* subtle gradient border for project/skill cards */
+    .accent-border{
+      position:absolute;inset:0;border-radius:inherit;padding:1px;
+      background: linear-gradient(90deg, rgba(0,160,255,0.12), rgba(0,163,255,0.06));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
+      opacity:0.06;
+    }
+
+  </style>
 </head>
 <body>
-
-    <div class="grid-overlay"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="logo">&lt;Navin /&gt;</a>
+  <div class="container">
+    <header>
+      <div class="brand glass" aria-hidden="true">
+        <div class="logo-dot">N</div>
+        <div style="line-height:1">
+          <div style="font-weight:700">Navin</div>
+          <div style="font-size:12px;color:var(--muted)">Software Engineer</div>
         </div>
-    </nav>
+      </div>
 
-    <section id="hero">
-        <div class="container fade-in">
-            <div class="hero-badge">Welcome to my universe</div>
-            <h1>Hi, I'm <span class="gradient-text">Navin</span></h1>
-            <div class="typing-container">
-                <span id="typing-text"></span><span class="cursor" style="color: var(--neon-cyan);">_</span>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero glass reveal" id="home" aria-labelledby="hero-heading">
+        <div class="neon-line" aria-hidden="true"></div>
+
+        <div class="hero-left">
+          <div class="name" id="hero-heading">
+            <span style="display:inline-block">Navin</span>
+            <span style="font-size:14px;color:var(--muted);font-weight:600">| Software Engineer</span>
+          </div>
+          <div class="title">Software Engineer <span style="color:var(--muted)">|</span> Competitive Programmer</div>
+
+          <div>
+            <span style="color:var(--muted);margin-right:8px">Focus:</span>
+            <span class="typing" id="typing"></span>
+            <span class="cursor" id="cursor" aria-hidden="true" style="color:var(--accent1);font-weight:700">▍</span>
+          </div>
+
+          <div class="hero-cta">
+            <a class="btn glow" href="#projects" id="view-projects">View Projects</a>
+            <a class="btn" href="#contact" style="color:var(--muted)">Contact</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="profile-card glass">
+            <div class="avatar" aria-hidden="true">N</div>
+            <h3 style="margin-bottom:6px">Navin</h3>
+            <p>Problem solver who loves algorithms, competitive programming, and building polished web experiences.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="glass reveal" aria-labelledby="about-heading">
+        <div class="section-header">
+          <h2 id="about-heading">About</h2>
+          <div style="color:var(--muted);font-size:13px">DSA • Competitive Programming • Web Dev</div>
+        </div>
+
+        <div class="about">
+          <p>
+            I'm passionate about solving challenging problems and turning ideas into reliable software.
+            I enjoy designing efficient algorithms, competing in programming contests, and crafting responsive web applications with clean UX.
+          </p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <div class="glass" style="flex:1;min-width:220px">
+              <h4 style="margin-bottom:8px">What I focus on</h4>
+              <p style="color:var(--muted)">Data Structures & Algorithms, Competitive Programming, and Frontend & Fullstack Web Development.</p>
             </div>
-            <a href="#projects" class="btn-glow">Explore My Work</a>
-        </div>
-    </section>
 
-    <section id="about">
-        <div class="container fade-in">
-            <h2 class="section-title gradient-text">About Me</h2>
-            <div class="glass-card" style="max-width: 900px; margin: 0 auto; text-align: center; padding: 50px;">
-                <p style="font-size: 1.25rem; color: var(--text-muted);">
-                    I am a 3rd-year Information Technology student (Batch of 2027) engineered for problem-solving. My core runtime environment is built on <span style="color: #fff; font-weight: 600;">C++</span> and <span style="color: #fff; font-weight: 600;">Data Structures & Algorithms</span>. I thrive in competitive programming arenas like LeetCode and Codeforces. Beyond the terminal, I architect responsive web applications and explore the boundaries of Cloud Computing and IoT.
-                </p>
+            <div class="glass" style="flex:1;min-width:220px">
+              <h4 style="margin-bottom:8px">Approach</h4>
+              <p style="color:var(--muted)">I prioritize clarity, performance, and maintainability. I love breaking down complex problems and iterating quickly.</p>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section id="skills">
-        <div class="container fade-in">
-            <h2 class="section-title gradient-text">Technical Arsenal</h2>
-            <div class="skills-grid">
-                <div class="glass-card skill-item tilt-element">
-                    <i class="fa-solid fa-microchip"></i>
-                    <h3>C++ Ecosystem</h3>
-                    <p>Advanced STL, Fast I/O mechanics, and Object-Oriented paradigms for optimal performance.</p>
-                </div>
-                <div class="glass-card skill-item tilt-element">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <h3>Core DSA</h3>
-                    <p>Deep understanding of algorithmic complexity, graph theory, and dynamic programming.</p>
-                </div>
-                <div class="glass-card skill-item tilt-element">
-                    <i class="fa-solid fa-khanda"></i>
-                    <h3>Competitive Coding</h3>
-                    <p>Battle-tested problem solver across global arenas like LeetCode, Codeforces, and CodeChef.</p>
-                </div>
-                <div class="glass-card skill-item tilt-element">
-                    <i class="fa-solid fa-code"></i>
-                    <h3>Web Technologies</h3>
-                    <p>Crafting immersive digital experiences using modern HTML, CSS, and modular JavaScript.</p>
-                </div>
+      <!-- SKILLS -->
+      <section id="skills" class="glass reveal" aria-labelledby="skills-heading">
+        <div class="section-header">
+          <h2 id="skills-heading">Skills</h2>
+          <div style="color:var(--muted);font-size:13px">Technologies & Strengths</div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill">
+            <div class="icon" aria-hidden="true">
+              <!-- C++ icon (simple) -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.5" y="3" width="21" height="18" rx="3" fill="url(#g1)"/>
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#00f0ff"/>
+                    <stop offset="1" stop-color="#00a3ff"/>
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container fade-in">
-            <h2 class="section-title gradient-text">Featured Builds</h2>
-            <div class="projects-grid">
-                
-                <div class="glass-card project-card tilt-element">
-                    <h3>DSA Tracker Protocol</h3>
-                    <p>A specialized analytics dashboard built to monitor daily DSA velocity, dissect algorithmic patterns, and schedule optimal revision cycles.</p>
-                    <a href="https://github.com/777navin" target="_blank" class="project-link">
-                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-
-                <div class="glass-card project-card tilt-element">
-                    <h3>V2 Portfolio UI</h3>
-                    <p>A high-performance, responsive developer portfolio utilizing advanced glassmorphism, dynamic glowing elements, and vanilla JS physics.</p>
-                    <a href="https://github.com/777navin" target="_blank" class="project-link">
-                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-
-                <div class="glass-card project-card tilt-element">
-                    <h3>Data Intelligence (EDA)</h3>
-                    <p>Processed and visualized massive datasets (Airbnb/Netflix) using Python and Pandas to extract actionable market insights.</p>
-                    <a href="https://github.com/777navin" target="_blank" class="project-link">
-                        <span>View Source</span> <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-
+            <div>
+              <h4>C++</h4>
+              <p>Efficient implementations, STL mastery, and performance tuning.</p>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <section id="achievements">
-        <div class="container fade-in">
-            <h2 class="section-title gradient-text">Milestones</h2>
-            <div class="achievements-grid">
-                
-                <div class="glass-card achievement-item tilt-element">
-                    <i class="fa-solid fa-ranking-star"></i>
-                    <div>
-                        <h3 style="font-size: 1.4rem;">Top 7 Ranking</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Institutional Academic Leader</p>
-                    </div>
-                </div>
-
-                <div class="glass-card achievement-item tilt-element">
-                    <i class="fa-solid fa-bolt"></i>
-                    <div>
-                        <h3 style="font-size: 1.4rem;">HackWithInfy</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Active Competitive Challenger</p>
-                    </div>
-                </div>
-
-                <div class="glass-card achievement-item tilt-element">
-                    <i class="fa-solid fa-brain"></i>
-                    <div>
-                        <h3 style="font-size: 1.4rem;">300+ Solved</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Algorithmic Problem Sets</p>
-                    </div>
-                </div>
-
-                <div class="glass-card achievement-item tilt-element">
-                    <i class="fa-solid fa-cloud"></i>
-                    <div>
-                        <h3 style="font-size: 1.4rem;">Oracle Certified</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Cloud & VOIS Tech Scholar</p>
-                    </div>
-                </div>
-
+          <div class="skill">
+            <div class="icon" aria-hidden="true">DS</div>
+            <div>
+              <h4>Data Structures & Algorithms</h4>
+              <p>Designing optimal solutions and analyzing complexity.</p>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <section id="contact">
-        <div class="container fade-in text-center">
-            <h2 class="section-title gradient-text">Initiate Contact</h2>
-            <div class="glass-card tilt-element" style="max-width: 700px; margin: 0 auto; text-align: center; padding: 60px 40px;">
-                <h3 style="font-size: 2rem; margin-bottom: 20px;">Ready to build something great?</h3>
-                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px;">System currently accepting connections for 2027 batch opportunities, internships, and algorithmic discussions.</p>
-                
-                <div class="contact-links">
-                    <a href="mailto:your@email.com" class="contact-icon" title="Initialize Email"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://github.com/777navin" target="_blank" class="contact-icon" title="Access GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" target="_blank" class="contact-icon" title="Connect LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
+          <div class="skill">
+            <div class="icon" aria-hidden="true">CP</div>
+            <div>
+              <h4>Competitive Programming</h4>
+              <p>Contest-ready problem solving and fast prototyping.</p>
             </div>
+          </div>
+
+          <div class="skill">
+            <div class="icon" aria-hidden="true">&lt;/&gt;</div>
+            <div>
+              <h4>HTML • CSS • JavaScript</h4>
+              <p>Responsive UI, modern CSS, and interactive frontends.</p>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--glass-border); color: var(--text-muted); margin-top: 50px;">
-        <div class="container">
-            <p style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">Designed & Engineered by Navin © 2026</p>
+      <!-- PROJECTS -->
+      <section id="projects" class="glass reveal" aria-labelledby="projects-heading">
+        <div class="section-header">
+          <h2 id="projects-heading">Projects</h2>
+          <div style="color:var(--muted);font-size:13px">Selected work</div>
         </div>
-    </footer>
 
-    <script>
-        // Typing Animation
-        const textArray = ["Software Engineer.", "Competitive Programmer.", "Problem Solver."];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById("typing-text");
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project glass" aria-labelledby="p1">
+            <div>
+              <h3 id="p1">DSA Tracker</h3>
+              <p>Track problems solved, categorize by topic, and visualize progress over time.</p>
+            </div>
+            <div class="links">
+              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="gh" href="#projects" aria-hidden="true">Live (demo)</a>
+            </div>
+          </article>
 
-        function type() {
-            const currentText = textArray[textIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
+          <!-- Project 2 -->
+          <article class="project glass" aria-labelledby="p2">
+            <div>
+              <h3 id="p2">Portfolio Website</h3>
+              <p>A modern, responsive portfolio showcasing projects, skills, and achievements with polished UI.</p>
+            </div>
+            <div class="links">
+              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="gh" href="#projects" aria-hidden="true">Preview</a>
+            </div>
+          </article>
 
-            let typeSpeed = isDeleting ? 40 : 100;
+          <!-- Project 3 -->
+          <article class="project glass" aria-labelledby="p3">
+            <div>
+              <h3 id="p3">CP Profile Analyzer</h3>
+              <p>Analyze contest performance, visualize strengths, and suggest practice plans (idea).</p>
+            </div>
+            <div class="links">
+              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="gh" href="#projects" aria-hidden="true">More</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2500; // Pause at end of word
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % textArray.length;
-                typeSpeed = 500; // Pause before new word
-            }
+      <!-- ACHIEVEMENTS -->
+      <section id="achievements" class="glass reveal" aria-labelledby="achievements-heading">
+        <div class="section-header">
+          <h2 id="achievements-heading">Achievements</h2>
+          <div style="color:var(--muted);font-size:13px">Recognition & milestones</div>
+        </div>
 
-            setTimeout(type, typeSpeed);
+        <div class="achievements">
+          <div class="ach">
+            <h4>Top 7 in College Ranking</h4>
+            <p>Consistent academic performance and project contributions.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Active Competitive Programmer</h4>
+            <p>Regular contest participation and problem solving practice.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Solved 300+ DSA problems</h4>
+            <p>Extensive practice across algorithms and data structures.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Open Source Contributions</h4>
+            <p>Contributed to tools and libraries; active on GitHub.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Hackathon Participant</h4>
+            <p>Built prototypes under tight deadlines and collaborated with teams.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Technical Blog</h4>
+            <p>Writes about algorithms, optimization, and web development.</p>
+          </div>
+
+          <div class="ach">
+            <h4>Mentor</h4>
+            <p>Guides juniors on DSA and contest strategies.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="glass reveal" aria-labelledby="contact-heading">
+        <div class="section-header">
+          <h2 id="contact-heading">Contact</h2>
+          <div style="color:var(--muted);font-size:13px">Let's connect</div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <strong>Email</strong>
+            <a href="mailto:navin@example.com">navin@example.com</a>
+            <p style="color:var(--muted)">Prefer email for project inquiries and collaboration.</p>
+          </div>
+
+          <div class="contact-card">
+            <strong>GitHub</strong>
+            <a href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">github.com/777navin</a>
+            <p style="color:var(--muted)">Repositories, contributions, and project code.</p>
+          </div>
+
+          <div class="contact-card">
+            <strong>LinkedIn</strong>
+            <a href="#" aria-label="LinkedIn profile (placeholder)">linkedin.com/in/your-profile</a>
+            <p style="color:var(--muted)">Profile placeholder — replace with your LinkedIn URL.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="glass reveal" role="contentinfo">
+        <div style="font-weight:600">Navin</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px">Software Engineer • Competitive Programmer</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    /* =========================
+       Typing animation (hero)
+       ========================= */
+    (function(){
+      const phrases = ["DSA", "CP", "Web Dev", "Algorithms", "Problem Solving"];
+      const el = document.getElementById('typing');
+      const cursor = document.getElementById('cursor');
+      let pIndex = 0, charIndex = 0, deleting = false;
+      const typeSpeed = 90;
+      const deleteSpeed = 40;
+      const pause = 900;
+
+      function tick(){
+        const current = phrases[pIndex];
+        if(!deleting){
+          el.textContent = current.slice(0, ++charIndex);
+          if(charIndex === current.length){
+            deleting = true;
+            setTimeout(tick, pause);
+            return;
+          }
+        } else {
+          el.textContent = current.slice(0, --charIndex);
+          if(charIndex === 0){
+            deleting = false;
+            pIndex = (pIndex + 1) % phrases.length;
+          }
         }
+        const delay = deleting ? deleteSpeed : typeSpeed;
+        setTimeout(tick, delay);
+      }
 
-        // 3D Tilt Effect on Cards
-        const cards = document.querySelectorAll('.tilt-element');
-        
-        cards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation degrees
-                const rotateY = ((x - centerX) / centerX) * 10;
+      // Blink cursor
+      setInterval(()=> {
+        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+      }, 500);
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            });
+      // Start after small delay
+      setTimeout(tick, 600);
+    })();
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-            });
+    /* =========================
+       Scroll reveal (fade-in)
+       ========================= */
+    (function(){
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            // optionally unobserve to avoid re-trigger
+            io.unobserve(entry.target);
+          }
         });
+      }, {threshold: 0.12});
+      reveals.forEach(r => io.observe(r));
+    })();
 
-        // Scroll Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+    /* =========================
+       Add subtle hover glow for cards (dynamic)
+       ========================= */
+    (function(){
+      // Add accent border element to each glass card for subtle neon accent
+      document.querySelectorAll('.glass').forEach(card=>{
+        const accent = document.createElement('div');
+        accent.className = 'accent-border';
+        card.style.position = 'relative';
+        card.appendChild(accent);
+      });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(type, 1000);
-            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      // Add hover glow effect for project and skill cards
+      const hoverTargets = document.querySelectorAll('.project, .skill, .ach, .contact-card, .profile-card');
+      hoverTargets.forEach(el=>{
+        el.addEventListener('mouseenter', ()=> {
+          el.style.boxShadow = '0 30px 80px rgba(0,160,255,0.08)';
+          el.style.borderColor = 'rgba(0,200,255,0.12)';
         });
+        el.addEventListener('mouseleave', ()=> {
+          el.style.boxShadow = '';
+          el.style.borderColor = '';
+        });
+      });
+    })();
 
-        // Blinking Cursor
-        setInterval(() => {
-            const cursor = document.querySelector('.cursor');
-            if(cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-        }, 500);
-    </script>
+    /* =========================
+       Smooth scroll offset fix for anchor links (if needed)
+       ========================= */
+    (function(){
+      // If you want to offset for sticky header, you can adjust scroll position
+      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const targetId = a.getAttribute('href').slice(1);
+          if(!targetId) return;
+          const target = document.getElementById(targetId);
+          if(!target) return;
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - Math.min(headerHeight, 24);
+          window.scrollTo({top, behavior:'smooth'});
+        });
+      });
+    })();
+
+    /* =========================
+       Small accessibility: focus outlines for keyboard users
+       ========================= */
+    (function(){
+      function handleFirstTab(e) {
+        if (e.key === 'Tab') {
+          document.body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+
+    /* =========================
+       Ready for GitHub Pages
+       - All assets inline, no frameworks
+       ========================= */
+  </script>
 </body>
 </html>
+```
