@@ -1,820 +1,1274 @@
-```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Navin — Software Engineer & Competitive Programmer</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <meta name="description" content="Navin — Software Engineer | Competitive Programmer. DSA, CP, Web Dev portfolio." />
-
-  <style>
-    :root{
-      --bg:#030417;
-      --navy:#071028;
-      --glass-bg: rgba(255,255,255,0.03);
-      --glass-border: rgba(255,255,255,0.06);
-      --accent1: #00f0ff;
-      --accent2: #00a3ff;
-      --muted: rgba(255,255,255,0.6);
-      --card-radius: 14px;
-      --glass-blur: 10px;
-      --max-width: 1100px;
-      --glass-shadow: 0 8px 30px rgba(2,6,23,0.6);
-    }
-
-    /* Basic reset */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,160,255,0.06), transparent 8%),
-                  radial-gradient(900px 500px at 90% 90%, rgba(0,160,255,0.03), transparent 10%),
-                  linear-gradient(180deg,var(--bg), #02020a 60%);
-      color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      scroll-behavior:smooth;
-      padding:40px 20px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-    }
-
-    header{
-      position:sticky;
-      top:18px;
-      z-index:40;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      margin-bottom:28px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:8px 14px;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--glass-border);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: var(--glass-shadow);
-    }
-
-    .logo-dot{
-      width:36px;height:36px;border-radius:10px;
-      background: linear-gradient(135deg,var(--accent1),var(--accent2));
-      box-shadow: 0 6px 18px rgba(0,160,255,0.12), 0 0 18px rgba(0,160,255,0.08) inset;
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;
-      font-size:14px;
-    }
-
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      margin-left:18px;
-      font-weight:500;
-      transition:color .25s ease, transform .18s ease;
-    }
-    nav a:hover{ color:var(--accent1); transform:translateY(-2px) }
-
-    main{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:36px;
-    }
-
-    /* Glass card base */
-    .glass{
-      background: var(--glass-bg);
-      border:1px solid var(--glass-border);
-      border-radius:var(--card-radius);
-      padding:22px;
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      box-shadow: var(--glass-shadow);
-      transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s ease, border-color .35s ease;
-    }
-
-    /* HERO */
-    .hero{
-      display:flex;
-      gap:28px;
-      align-items:center;
-      padding:36px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-left{
-      flex:1;
-      min-width:0;
-    }
-
-    .name{
-      font-size:clamp(28px,5vw,44px);
-      font-weight:700;
-      letter-spacing:-0.6px;
-      margin-bottom:8px;
-      color:linear-gradient(90deg,var(--accent1),var(--accent2));
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .title{
-      color:var(--muted);
-      font-weight:600;
-      margin-bottom:18px;
-    }
-
-    .typing{
-      display:inline-block;
-      color:var(--accent1);
-      font-weight:600;
-      background: linear-gradient(90deg,var(--accent1),var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      font-size:16px;
-    }
-
-    .hero-cta{
-      margin-top:20px;
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 18px;
-      border-radius:12px;
-      cursor:pointer;
-      border:1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      color:#e6f9ff;
-      font-weight:600;
-      text-decoration:none;
-      transition: transform .18s ease, box-shadow .25s ease;
-      position:relative;
-      overflow:visible;
-    }
-
-    .btn:active{ transform:translateY(1px) }
-
-    /* Neon glowing button */
-    .btn.glow{
-      padding:12px 22px;
-      border-radius:14px;
-      background: linear-gradient(90deg, rgba(0,160,255,0.12), rgba(0,163,255,0.06));
-      box-shadow: 0 6px 30px rgba(0,160,255,0.12), 0 0 30px rgba(0,160,255,0.06) inset;
-      border:1px solid rgba(0,200,255,0.18);
-    }
-
-    .btn.glow::after{
-      content:"";
-      position:absolute;
-      left:-40%;
-      top:-40%;
-      width:180%;
-      height:180%;
-      background: radial-gradient(circle at 20% 20%, rgba(0,240,255,0.06), transparent 10%),
-                  radial-gradient(circle at 80% 80%, rgba(0,160,255,0.04), transparent 10%);
-      pointer-events:none;
-      transition:opacity .3s ease;
-      opacity:1;
-    }
-
-    .btn.glow:hover{
-      transform:translateY(-4px) scale(1.02);
-      box-shadow: 0 12px 50px rgba(0,160,255,0.18), 0 0 40px rgba(0,160,255,0.12);
-    }
-
-    .hero-right{
-      width:320px;
-      min-width:220px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .profile-card{
-      width:100%;
-      padding:18px;
-      border-radius:14px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .avatar{
-      width:96px;height:96px;border-radius:18px;margin:0 auto 12px;
-      background:linear-gradient(135deg,var(--accent1),var(--accent2));
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;font-size:28px;
-      box-shadow: 0 10px 30px rgba(0,160,255,0.12);
-    }
-
-    .profile-card p{ color:var(--muted); font-size:14px }
-
-    /* Sections layout */
-    section{
-      display:grid;
-      gap:18px;
-    }
-
-    .section-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:12px;
-      margin-bottom:6px;
-    }
-
-    .section-header h2{
-      font-size:18px;
-      letter-spacing:-0.2px;
-    }
-
-    .about{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:16px;
-    }
-
-    .about p{ color:var(--muted) }
-
-    /* Skills grid */
-    .skills-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:14px;
-    }
-
-    .skill{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      padding:14px;
-      border-radius:12px;
-      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
-      cursor:default;
-      border:1px solid rgba(255,255,255,0.03);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-    }
-
-    .skill .icon{
-      width:48px;height:48px;border-radius:10px;
-      display:flex;align-items:center;justify-content:center;
-      background: linear-gradient(135deg, rgba(0,160,255,0.12), rgba(0,160,255,0.06));
-      border:1px solid rgba(255,255,255,0.03);
-      font-weight:700;color:var(--accent1);
-      box-shadow: 0 6px 18px rgba(0,160,255,0.06);
-    }
-
-    .skill h4{ font-size:15px; margin-bottom:4px }
-    .skill p{ font-size:13px; color:var(--muted) }
-
-    .skill:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow: 0 18px 50px rgba(0,160,255,0.08);
-      border-color: rgba(0,200,255,0.18);
-    }
-
-    /* Projects */
-    .projects-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-    }
-
-    .project{
-      padding:16px;
-      border-radius:12px;
-      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease;
-      position:relative;
-      overflow:hidden;
-      min-height:140px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .project h3{ margin-bottom:8px }
-    .project p{ color:var(--muted); font-size:14px }
-
-    .project .links{
-      display:flex;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .project .gh{
-      padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);
-      color:var(--muted);text-decoration:none;font-weight:600;
-      transition: all .18s ease;
-    }
-
-    .project:hover{
-      transform:translateY(-10px);
-      box-shadow: 0 30px 80px rgba(0,160,255,0.08);
-      border:1px solid rgba(0,200,255,0.12);
-    }
-
-    /* Achievements */
-    .achievements{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .ach{
-      padding:12px 14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border:1px solid rgba(255,255,255,0.03);
-      min-width:180px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.5);
-    }
-
-    .ach h4{ font-size:15px; margin-bottom:6px }
-    .ach p{ color:var(--muted); font-size:13px }
-
-    /* Contact */
-    .contact-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;
-    }
-
-    .contact-card{
-      display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-    }
-
-    .contact-card a{ color:var(--accent1); text-decoration:none; font-weight:600 }
-
-    footer{
-      margin-top:28px;
-      padding:18px;
-      text-align:center;
-      color:var(--muted);
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03);
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-    }
-
-    /* Fade-in reveal */
-    .reveal{
-      opacity:0;
-      transform:translateY(18px);
-      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1);
-    }
-    .reveal.visible{
-      opacity:1;
-      transform:none;
-    }
-
-    /* small screens */
-    @media (max-width:880px){
-      .hero{ flex-direction:column; align-items:flex-start; padding:18px }
-      .hero-right{ width:100% }
-      header{ flex-direction:column; align-items:flex-start; gap:12px }
-      nav a{ margin-left:8px }
-    }
-
-    @media (max-width:480px){
-      body{ padding:20px 14px }
-      .brand{ padding:6px 10px }
-      .logo-dot{ width:34px;height:34px;font-size:13px }
-      .btn{ padding:10px 14px; font-size:14px }
-    }
-
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; animation:none !important }
-    }
-
-    /* small decorative neon lines */
-    .neon-line{
-      position:absolute;
-      height:2px;
-      width:60%;
-      left:10%;
-      top:0;
-      background: linear-gradient(90deg,var(--accent1),var(--accent2));
-      opacity:0.06;
-      filter:blur(6px);
-      pointer-events:none;
-    }
-
-    /* subtle gradient border for project/skill cards */
-    .accent-border{
-      position:absolute;inset:0;border-radius:inherit;padding:1px;
-      background: linear-gradient(90deg, rgba(0,160,255,0.12), rgba(0,163,255,0.06));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events:none;
-      opacity:0.06;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navinkumar Tirupati Tumma | Full Stack Developer & AI Specialist</title>
+    <link rel="stylesheet" href="style-premium.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <div class="brand glass" aria-hidden="true">
-        <div class="logo-dot">N</div>
-        <div style="line-height:1">
-          <div style="font-weight:700">Navin</div>
-          <div style="font-size:12px;color:var(--muted)">Software Engineer</div>
+    <div class="bg-mesh">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+        <div class="blob blob--3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <div class="nav-content">
+                <a href="#" class="logo-avatar">
+                    <img src="hacker-portrait.png" alt="Navinkumar Tumma" class="logo-img" />
+                </a>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#competitive" class="nav-link">Competitive</a></li>
+                    <li><a href="#practice" class="nav-link">Practice</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                    <li><a href="#certifications" class="nav-link">Certs</a></li>
+                </ul>
+                <a href="#contact" class="nav-cta">Let's Talk</a>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <nav aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero glass reveal" id="home" aria-labelledby="hero-heading">
-        <div class="neon-line" aria-hidden="true"></div>
-
-        <div class="hero-left">
-          <div class="name" id="hero-heading">
-            <span style="display:inline-block">Navin</span>
-            <span style="font-size:14px;color:var(--muted);font-weight:600">| Software Engineer</span>
-          </div>
-          <div class="title">Software Engineer <span style="color:var(--muted)">|</span> Competitive Programmer</div>
-
-          <div>
-            <span style="color:var(--muted);margin-right:8px">Focus:</span>
-            <span class="typing" id="typing"></span>
-            <span class="cursor" id="cursor" aria-hidden="true" style="color:var(--accent1);font-weight:700">▍</span>
-          </div>
-
-          <div class="hero-cta">
-            <a class="btn glow" href="#projects" id="view-projects">View Projects</a>
-            <a class="btn" href="#contact" style="color:var(--muted)">Contact</a>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="profile-card glass">
-            <div class="avatar" aria-hidden="true">N</div>
-            <h3 style="margin-bottom:6px">Navin</h3>
-            <p>Problem solver who loves algorithms, competitive programming, and building polished web experiences.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="glass reveal" aria-labelledby="about-heading">
-        <div class="section-header">
-          <h2 id="about-heading">About</h2>
-          <div style="color:var(--muted);font-size:13px">DSA • Competitive Programming • Web Dev</div>
-        </div>
-
-        <div class="about">
-          <p>
-            I'm passionate about solving challenging problems and turning ideas into reliable software.
-            I enjoy designing efficient algorithms, competing in programming contests, and crafting responsive web applications with clean UX.
-          </p>
-
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <div class="glass" style="flex:1;min-width:220px">
-              <h4 style="margin-bottom:8px">What I focus on</h4>
-              <p style="color:var(--muted)">Data Structures & Algorithms, Competitive Programming, and Frontend & Fullstack Web Development.</p>
+    <!-- Hero Section — Framer-Inspired -->
+    <section class="hero">
+        <div class="hero__bg-glow"></div>
+        <div class="hero__container">
+            <!-- LEFT — Screenshot style content -->
+            <div class="hero__left">
+                <div class="micro-badge floating">
+                    <i data-lucide="zap" style="width: 12px; height: 12px;"></i>
+                    AVAILABLE FOR INTERNSHIPS &amp; COLLAB
+                </div>
+                <h1 class="hero__heading">
+                    <i data-lucide="code-2" class="hero__title-icon"></i>
+                    Hi, I&apos;m <span class="hero__name-highlight">Navinkumar</span><br>
+                    I build with <span class="hero__name-highlight">code</span> &amp;<br>
+                    <span class="hero__name-highlight">AI.</span>
+                </h1>
+                <p class="hero__role"><span class="cyan">_</span> role: AI Developer</p>
+                <p class="hero__desc">
+                    I solve real-world problems using DSA, AI, and scalable systems.
+                    Combining strong DSA foundations with modern AI tooling - RAG,
+                    LLMs and cloud - to ship real, useful software.
+                </p>
+                <div class="hero__actions">
+                    <a href="https://github.com/777navin" target="_blank" class="hero__btn hero__btn--primary">
+                        View GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/navinkumar-t-245b46336" target="_blank"
+                        class="hero__btn hero__btn--ghost">
+                        LinkedIn
+                    </a>
+                    <a href="https://wa.me/918329760179?text=Hi%20Navin%2C%20I%20saw%20your%20portfolio" target="_blank" class="btn-whatsapp">
+                        <i data-lucide="message-circle"></i> Chat
+                    </a>
+                </div>
+                <p class="hero__location">
+                    <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--primary);"></i>
+                    Pune, Maharashtra, India &nbsp; • &nbsp; 
+                    <i data-lucide="graduation-cap" style="width: 14px; height: 14px; color: var(--secondary);"></i>
+                    CGPA 8.4
+                </p>
+                <div class="hero__resume-info">
+                    <a href="#contact" class="resume-request">
+                        <i data-lucide="file-text"></i> Available for internships • Resume on request
+                    </a>
+                </div>
             </div>
 
-            <div class="glass" style="flex:1;min-width:220px">
-              <h4 style="margin-bottom:8px">Approach</h4>
-              <p style="color:var(--muted)">I prioritize clarity, performance, and maintainability. I love breaking down complex problems and iterating quickly.</p>
+            <!-- RIGHT — Screenshot style profile card -->
+            <div class="hero__right">
+                <div class="hero__img-glow"></div>
+                
+                <!-- Floating Social Proof -->
+                <div class="micro-badge micro-badge--purple floating" style="position: absolute; top: 10%; left: -40px; z-index: 5;">
+                    <i data-lucide="award" style="width: 12px; height: 12px;"></i>
+                    Top 0.5%
+                </div>
+                <div class="micro-badge floating-delayed" style="position: absolute; bottom: 25%; right: -30px; z-index: 5;">
+                    <i data-lucide="check-circle-2" style="width: 12px; height: 12px;"></i>
+                    500+ Solved
+                </div>
+
+                <div class="hero__profile-light-card glass-card">
+                    <p class="hero__profile-file">~/navin/profile.ts</p>
+                    <div class="hero__profile-top">
+                        <div class="hero__img-wrapper">
+                            <img src="hacker-portrait.png" alt="Navinkumar Tumma" class="hero__img" />
+                        </div>
+                        <div class="hero__profile-card-text">
+                            <p class="hero__profile-card-name">Navinkumar Tumma</p>
+                            <p class="hero__profile-card-role">Competitive Programmer | AI &amp; Full Stack Developer
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hero__profile-code">
+                        <p><span class="code-keyword">const</span> <span class="code-variable">navin</span> = {</p>
+                        <p>&nbsp;&nbsp;<span class="code-property">focus</span>: [<span class="code-string">"DSA"</span>, <span class="code-string">"CP"</span>, <span class="code-string">"AI"</span>, <span class="code-string">"Cloud"</span>],</p>
+                        <p>&nbsp;&nbsp;<span class="code-property">stack</span>: [<span class="code-string">"C++"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Java"</span>, <span class="code-string">"C#"</span>],</p>
+                        <p>&nbsp;&nbsp;<span class="code-property">learning</span>: <span class="code-string">"Always"</span>,</p>
+                        <p>&nbsp;&nbsp;<span class="code-property">cgpa</span>: <span class="code-number">8.4</span>,</p>
+                        <p>};</p>
+                    </div>
+                    <div class="hero__profile-stats">
+                        <div class="hero__stat-card">
+                            <span class="hero__stat-num">500+</span>
+                            <span class="hero__stat-lbl">PROBLEMS</span>
+                        </div>
+                        <div class="hero__stat-card hero__stat-card--accent">
+                            <span class="hero__stat-num">0.5%</span>
+                            <span class="hero__stat-lbl">RANK</span>
+                        </div>
+                        <div class="hero__stat-card">
+                            <span class="hero__stat-num">9+</span>
+                            <span class="hero__stat-lbl">CERTS</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- SKILLS -->
-      <section id="skills" class="glass reveal" aria-labelledby="skills-heading">
-        <div class="section-header">
-          <h2 id="skills-heading">Skills</h2>
-          <div style="color:var(--muted);font-size:13px">Technologies & Strengths</div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-v2">
+                <div class="about-v2__header-wrap">
+                <div class="about-v2__left">
+                    <p class="section-kicker">01 / ABOUT</p>
+                    <h2 class="about-v2__title"><i data-lucide="user"></i> Turning ideas into <span>shipped products.</span></h2>
+                </div>
+                    <a href="https://github.com/777navin" target="_blank" class="profile-badge">
+                        <i data-lucide="github" class="profile-badge__icon"></i>
+                        <div class="profile-badge__content">
+                            <span class="profile-badge__label">GITHUB</span>
+                            <span class="profile-badge__user">@777navin</span>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="profile-badge__arrow"></i>
+                    </a>
+                </div>
+
+                <div class="about-v2__content-grid">
+                    <div class="about-v2__main-text">
+                        <p class="about-v2__text">
+                            I am a passionate competitive programmer and AI developer specialized in Data Structures, Algorithms, and Machine Learning.
+                        </p>
+                        <p class="about-v2__text">
+                            I build intelligent systems using RAG, LLMs, and cloud platforms like IBM Cloud and AWS to solve real-world problems.
+                        </p>
+                        <p class="about-v2__text">
+                            I focus on clean code, fast feedback loops, and turning complex research into functional, user-centric products.
+                        </p>
+                        <div class="about-v2__chips">
+                            <span class="about-v2__chip">Problem Solver</span>
+                            <span class="about-v2__chip">Team Player</span>
+                            <span class="about-v2__chip">Fast Learner</span>
+                            <span class="about-v2__chip">Builder Mindset</span>
+                        </div>
+                    </div>
+
+                    <div class="about-v2__right">
+                        <div class="about-v2__portrait-card">
+                            <img src="hacker-portrait.png" alt="Navinkumar selfie portrait"
+                                class="about-v2__portrait-img" />
+                            <div class="about-v2__portrait-meta">
+                                <span>\ PORTRAIT</span>
+                                <strong>Navinkumar Tumma</strong>
+                            </div>
+                            <div class="about-v2__status">Available</div>
+                        </div>
+
+                        <div class="about-v2__edu-card">
+                            <div class="edu-card__top">
+                                <div class="edu-card__icon-box">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                                <div class="edu-card__header">
+                                    <p class="edu-card__kicker">EDUCATION</p>
+                                    <h3 class="edu-card__title">B.Tech — Information Technology</h3>
+                                    <p class="edu-card__college">G.H. Raisoni College of Engineering and Management, Pune</p>
+                                    <div class="edu-card__info">
+                                        <span>2023 — 2027</span>
+                                        <span class="edu-card__dot"></span>
+                                        <span>CGPA <span class="cyan">8.4</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="edu-card__footer">
+                                <i data-lucide="map-pin"></i>
+                                <span>Pune, Maharashtra, India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        </section>
 
-        <div class="skills-grid">
-          <div class="skill">
-            <div class="icon" aria-hidden="true">
-              <!-- C++ icon (simple) -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.5" y="3" width="21" height="18" rx="3" fill="url(#g1)"/>
-                <defs>
-                  <linearGradient id="g1" x1="0" x2="1">
-                    <stop offset="0" stop-color="#00f0ff"/>
-                    <stop offset="1" stop-color="#00a3ff"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div>
-              <h4>C++</h4>
-              <p>Efficient implementations, STL mastery, and performance tuning.</p>
-            </div>
-          </div>
+    <div class="accent-divider"></div>
 
-          <div class="skill">
-            <div class="icon" aria-hidden="true">DS</div>
-            <div>
-              <h4>Data Structures & Algorithms</h4>
-              <p>Designing optimal solutions and analyzing complexity.</p>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="skills__header">
+                <p class="section-kicker">02 / SKILLS</p>
+                <h2 class="section-title"><i data-lucide="layout"></i> Technical <span class="gradient-text">Toolbox.</span></h2>
+                <p class="toolbox__subtitle">A mix of low-level fundamentals and modern AI tooling — everything I use to ship fast and learn faster.</p>
             </div>
-          </div>
 
-          <div class="skill">
-            <div class="icon" aria-hidden="true">CP</div>
-            <div>
-              <h4>Competitive Programming</h4>
-              <p>Contest-ready problem solving and fast prototyping.</p>
-            </div>
-          </div>
+            <div class="toolbox__grid">
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="book-open"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Core Foundations</h3>
+                            <p class="toolbox-card__count">6 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Core Foundations skills">
+                        <span class="toolbox-chip">Data Structures &amp; Algorithms</span>
+                        <span class="toolbox-chip">Operating Systems</span>
+                        <span class="toolbox-chip">DBMS</span>
+                        <span class="toolbox-chip">Artificial Intelligence</span>
+                        <span class="toolbox-chip">OOP</span>
+                        <span class="toolbox-chip">Web Development</span>
+                    </div>
+                </article>
 
-          <div class="skill">
-            <div class="icon" aria-hidden="true">&lt;/&gt;</div>
-            <div>
-              <h4>HTML • CSS • JavaScript</h4>
-              <p>Responsive UI, modern CSS, and interactive frontends.</p>
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="code"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Languages</h3>
+                            <p class="toolbox-card__count">6 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Languages skills">
+                        <span class="toolbox-chip">C</span>
+                        <span class="toolbox-chip">C++</span>
+                        <span class="toolbox-chip">Java</span>
+                        <span class="toolbox-chip">Python</span>
+                        <span class="toolbox-chip">C#</span>
+                        <span class="toolbox-chip">SQL</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="brain"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">AI / ML</h3>
+                            <p class="toolbox-card__count">4 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="AI and ML skills">
+                        <span class="toolbox-chip">LLMs</span>
+                        <span class="toolbox-chip">RAG</span>
+                        <span class="toolbox-chip">Prompt Engineering</span>
+                        <span class="toolbox-chip">n8n</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="globe"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Web</h3>
+                            <p class="toolbox-card__count">3 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Web skills">
+                        <span class="toolbox-chip">HTML5</span>
+                        <span class="toolbox-chip">CSS3</span>
+                        <span class="toolbox-chip">JavaScript</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="database"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Databases</h3>
+                            <p class="toolbox-card__count">4 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Database skills">
+                        <span class="toolbox-chip">MySQL</span>
+                        <span class="toolbox-chip">Oracle</span>
+                        <span class="toolbox-chip">PostgreSQL</span>
+                        <span class="toolbox-chip">MongoDB</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="cloud"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Cloud</h3>
+                            <p class="toolbox-card__count">2 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Cloud skills">
+                        <span class="toolbox-chip">AWS (EC2, S3, RDS)</span>
+                        <span class="toolbox-chip">IBM Cloud</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Data Science</h3>
+                            <p class="toolbox-card__count">4 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Data science skills">
+                        <span class="toolbox-chip">Pandas</span>
+                        <span class="toolbox-chip">NumPy</span>
+                        <span class="toolbox-chip">Matplotlib</span>
+                        <span class="toolbox-chip">Scikit-Learn</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="wrench"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Tools</h3>
+                            <p class="toolbox-card__count">4 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Tools skills">
+                        <span class="toolbox-chip">VS Code</span>
+                        <span class="toolbox-chip">Git</span>
+                        <span class="toolbox-chip">GitHub</span>
+                        <span class="toolbox-chip">Jupyter Notebook</span>
+                    </div>
+                </article>
+
+                <article class="toolbox-card">
+                    <header class="toolbox-card__header">
+                        <div class="toolbox-card__icon" aria-hidden="true"><i data-lucide="monitor"></i></div>
+                        <div class="toolbox-card__meta">
+                            <h3 class="toolbox-card__title">Operating Systems</h3>
+                            <p class="toolbox-card__count">2 skills</p>
+                        </div>
+                    </header>
+                    <div class="toolbox-card__chips" aria-label="Operating systems skills">
+                        <span class="toolbox-chip">Windows</span>
+                        <span class="toolbox-chip">Linux</span>
+                    </div>
+                </article>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="glass reveal" aria-labelledby="projects-heading">
-        <div class="section-header">
-          <h2 id="projects-heading">Projects</h2>
-          <div style="color:var(--muted);font-size:13px">Selected work</div>
-        </div>
+    <div class="accent-divider"></div>
 
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <article class="project glass" aria-labelledby="p1">
-            <div>
-              <h3 id="p1">DSA Tracker</h3>
-              <p>Track problems solved, categorize by topic, and visualize progress over time.</p>
+    <!-- Competitive Programming - Arena V3 -->
+    <section id="competitive" class="competitive-v3">
+        <div class="container">
+            <div class="competitive-v3__layout">
+                <div class="competitive-v3__header">
+                    <p class="section-kicker">03 / COMPETITIVE PROGRAMMING</p>
+                    <h2 class="competitive-v3__title"><i data-lucide="swords"></i> Coding <span class="gradient-text">Arena.</span></h2>
+                    <p class="competitive-v3__desc">Algorithms, data structures and high-speed problem solving across
+                        global platforms.</p>
+                </div>
+                <div class="competitive-v3__badge-wrap">
+                    <div class="competitive-v3__badge">
+                        <div class="badge-icon">
+                            <i data-lucide="trophy"></i>
+                        </div>
+                        <div class="badge-content">
+                            <span class="badge-label">TCS CODEVITA</span>
+                            <p class="badge-stat">Top 0.5% — Rank 2457</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="links">
-              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="gh" href="#projects" aria-hidden="true">Live (demo)</a>
+
+            <div class="competitive-v3__grid">
+                <!-- LeetCode -->
+                <a href="https://leetcode.com/u/navin_aaryan_777/" target="_blank" class="cp-card">
+                    <div class="cp-card__top">
+                        <div class="cp-card__logo">
+                            <img src="https://cdn.simpleicons.org/leetcode/ffffff" alt="LeetCode">
+                        </div>
+                        <div class="cp-card__info">
+                            <h3>LeetCode</h3>
+                            <p>Navinkumar Tumma</p>
+                        </div>
+                        <div class="cp-card__link"><i data-lucide="external-link"></i></div>
+                    </div>
+                    <div class="cp-card__stats">
+                        <span class="cp-card__number">1712</span>
+                        <span class="cp-card__label">Top 12.48%</span>
+                    </div>
+                </a>
+
+                <!-- Codeforces -->
+                <a href="https://codeforces.com/profile/navin_777" target="_blank" class="cp-card">
+                    <div class="cp-card__top">
+                        <div class="cp-card__logo">
+                            <img src="https://cdn.simpleicons.org/codeforces/ffffff" alt="Codeforces">
+                        </div>
+                        <div class="cp-card__info">
+                            <h3>Codeforces</h3>
+                            <p>Navinkumar Tumma</p>
+                        </div>
+                        <div class="cp-card__link"><i data-lucide="external-link"></i></div>
+                    </div>
+                    <div class="cp-card__stats">
+                        <span class="cp-card__number">1427</span>
+                        <span class="cp-card__label">Specialist</span>
+                    </div>
+                </a>
+
+                <!-- CodeChef -->
+                <a href="https://www.codechef.com/users/navin_777" target="_blank" class="cp-card">
+                    <div class="cp-card__top">
+                        <div class="cp-card__logo">
+                            <img src="https://cdn.simpleicons.org/codechef/ffffff" alt="CodeChef">
+                        </div>
+                        <div class="cp-card__info">
+                            <h3>CodeChef</h3>
+                            <p>Navinkumar Tumma</p>
+                        </div>
+                        <div class="cp-card__link"><i data-lucide="external-link"></i></div>
+                    </div>
+                    <div class="cp-card__stats">
+                        <span class="cp-card__number">1641</span>
+                        <span class="cp-card__label">Div 2 (Coder)</span>
+                    </div>
+                </a>
+
+                <!-- GeeksforGeeks -->
+                <a href="https://www.geeksforgeeks.org/user/navin_777/" target="_blank" class="cp-card">
+                    <div class="cp-card__top">
+                        <div class="cp-card__logo">
+                            <img src="https://cdn.simpleicons.org/geeksforgeeks/ffffff" alt="GFG">
+                        </div>
+                        <div class="cp-card__info">
+                            <h3>GeeksforGeeks</h3>
+                            <p>Navinkumar Tumma</p>
+                        </div>
+                        <div class="cp-card__link"><i data-lucide="external-link"></i></div>
+                    </div>
+                    <div class="cp-card__stats">
+                        <span class="cp-card__number">203</span>
+                        <span class="cp-card__label">Solved (Score: 704)</span>
+                    </div>
+                </a>
+
+                <!-- HackerRank -->
+                <a href="https://www.hackerrank.com/profile/myf8426" target="_blank" class="cp-card">
+                    <div class="cp-card__top">
+                        <div class="cp-card__logo">
+                            <img src="https://cdn.simpleicons.org/hackerrank/ffffff" alt="HackerRank">
+                        </div>
+                        <div class="cp-card__info">
+                            <h3>HackerRank</h3>
+                            <p>Navinkumar Tumma</p>
+                        </div>
+                        <div class="cp-card__link"><i data-lucide="external-link"></i></div>
+                    </div>
+                    <div class="cp-card__stats">
+                        <span class="cp-card__number">5★</span>
+                        <span class="cp-card__label">Problem Solving</span>
+                    </div>
+                </a>
             </div>
-          </article>
 
-          <!-- Project 2 -->
-          <article class="project glass" aria-labelledby="p2">
-            <div>
-              <h3 id="p2">Portfolio Website</h3>
-              <p>A modern, responsive portfolio showcasing projects, skills, and achievements with polished UI.</p>
+            <p class="competitive-v3__tagline">Passionate about solving complex problems and continuously improving
+                through competitive coding platforms.</p>
+        </div>
+    </section>
+
+    <!-- GitHub Work / Coding Activity -->
+    <div class="accent-divider"></div>
+
+    <!-- GitHub Activity Section - V2 -->
+    <section id="practice" class="github-activity">
+        <div class="container">
+            <div class="github-activity__header-wrap">
+                <div class="github-activity__header">
+                    <p class="section-kicker">04 / DAILY PRACTICE</p>
+                    <h2 class="github-activity__title"><i data-lucide="keyboard"></i> I ship code <span class="cyan">every</span> <span
+                            class="purple">single</span> <span class="pink">day.</span></h2>
+                    <p class="github-activity__desc">Public repos where I push daily — LeetCode POTD, GFG POTD,
+                        Codeforces contests and a growing DSA library. All open-source, all in C++.</p>
+                </div>
+                <a href="https://github.com/777navin" target="_blank" class="profile-badge">
+                    <i data-lucide="github" class="profile-badge__icon"></i>
+                    <div class="profile-badge__content">
+                        <span class="profile-badge__label">GITHUB</span>
+                        <span class="profile-badge__user">@777navin</span>
+                    </div>
+                    <i data-lucide="arrow-up-right" class="profile-badge__arrow"></i>
+                </a>
             </div>
-            <div class="links">
-              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="gh" href="#projects" aria-hidden="true">Preview</a>
+
+            <div class="github-activity__grid">
+                <!-- Card 1 -->
+                <a href="https://github.com/777navin/Leetcode_POTD" target="_blank" class="activity-card">
+                    <div class="activity-card__top">
+                        <div class="activity-card__icon-box">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <div class="activity-card__path">777navin /</div>
+                        <i data-lucide="star" class="activity-card__star"></i>
+                    </div>
+                    <h3 class="activity-card__repo-name">Leetcode_POTD</h3>
+                    <h4 class="activity-card__subtitle">LeetCode Problem of the Day</h4>
+                    <p class="activity-card__desc">Optimized C++ solutions to LeetCode's POTD with explanations,
+                        complexity analysis, and step-by-step breakdowns.</p>
+                    <div class="activity-card__footer">
+                        <span class="activity-card__tag"><span class="dot pink"></span> C++</span>
+                        <span class="activity-card__tag"><i data-lucide="flame"></i> Daily</span>
+                        <i data-lucide="arrow-up-right" class="activity-card__link-icon"></i>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="https://github.com/777navin/GFG_POTD" target="_blank" class="activity-card">
+                    <div class="activity-card__top">
+                        <div class="activity-card__icon-box">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <div class="activity-card__path">777navin /</div>
+                        <i data-lucide="star" class="activity-card__star"></i>
+                    </div>
+                    <h3 class="activity-card__repo-name">GFG_POTD</h3>
+                    <h4 class="activity-card__subtitle">GeeksforGeeks POTD</h4>
+                    <p class="activity-card__desc">Daily solutions to GeeksforGeeks Problem of the Day with optimized
+                        approaches, clean code and detailed explanations.</p>
+                    <div class="activity-card__footer">
+                        <span class="activity-card__tag"><span class="dot pink"></span> C++</span>
+                        <span class="activity-card__tag"><i data-lucide="flame"></i> Daily</span>
+                        <i data-lucide="arrow-up-right" class="activity-card__link-icon"></i>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="https://github.com/777navin/Codeforces_Daily_Solutions-" target="_blank" class="activity-card">
+                    <div class="activity-card__top">
+                        <div class="activity-card__icon-box">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <div class="activity-card__path">777navin /</div>
+                        <i data-lucide="star" class="activity-card__star"></i>
+                    </div>
+                    <h3 class="activity-card__repo-name">Codeforces_Daily_Solutions</h3>
+                    <h4 class="activity-card__subtitle">Codeforces Daily</h4>
+                    <p class="activity-card__desc">Daily curated Codeforces problem solutions with clean C++
+                        implementations, optimized approaches and contest-style notes.</p>
+                    <div class="activity-card__footer">
+                        <span class="activity-card__tag"><span class="dot pink"></span> C++</span>
+                        <span class="activity-card__tag"><i data-lucide="flame"></i> Daily</span>
+                        <i data-lucide="arrow-up-right" class="activity-card__link-icon"></i>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="https://github.com/777navin/Leetcode_DSA_Problems" target="_blank" class="activity-card">
+                    <div class="activity-card__top">
+                        <div class="activity-card__icon-box">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <div class="activity-card__path">777navin /</div>
+                        <i data-lucide="star" class="activity-card__star"></i>
+                    </div>
+                    <h3 class="activity-card__repo-name">Leetcode_DSA_Problems</h3>
+                    <h4 class="activity-card__subtitle">LeetCode DSA Problems</h4>
+                    <p class="activity-card__desc">Collection of DSA problems with C++ solutions — arrays, trees,
+                        graphs, DP and more. Focused on patterns & interview prep.</p>
+                    <div class="activity-card__footer">
+                        <span class="activity-card__tag"><span class="dot pink"></span> C++</span>
+                        <span class="activity-card__tag"><i data-lucide="calendar"></i> Ongoing</span>
+                        <i data-lucide="arrow-up-right" class="activity-card__link-icon"></i>
+                    </div>
+                </a>
+
+                <!-- Card 5 -->
+                <a href="https://github.com/777navin/gfg-problem-solving" target="_blank" class="activity-card">
+                    <div class="activity-card__top">
+                        <div class="activity-card__icon-box">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <div class="activity-card__path">777navin /</div>
+                        <i data-lucide="star" class="activity-card__star"></i>
+                    </div>
+                    <h3 class="activity-card__repo-name">gfg-problem-solving</h3>
+                    <h4 class="activity-card__subtitle">GFG Problem Solving</h4>
+                    <p class="activity-card__desc">Daily GFG problem solutions in C++. Improving DSA and interview
+                        skills through consistent practice with clean code and complexity notes.</p>
+                    <div class="activity-card__footer">
+                        <span class="activity-card__tag"><span class="dot pink"></span> C++</span>
+                        <span class="activity-card__tag"><i data-lucide="flame"></i> Daily</span>
+                        <i data-lucide="arrow-up-right" class="activity-card__link-icon"></i>
+                    </div>
+                </a>
             </div>
-          </article>
 
-          <!-- Project 3 -->
-          <article class="project glass" aria-labelledby="p3">
-            <div>
-              <h3 id="p3">CP Profile Analyzer</h3>
-              <p>Analyze contest performance, visualize strengths, and suggest practice plans (idea).</p>
+            <div class="github-activity__explore">
+                <a href="https://github.com/777navin" target="_blank" class="btn-explore">
+                    <i data-lucide="github"></i>
+                    <span>Explore all repositories</span>
+                </a>
             </div>
-            <div class="links">
-              <a class="gh" href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="gh" href="#projects" aria-hidden="true">More</a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <div class="accent-divider"></div>
+
+    <!-- Projects Section - Redesigned V2 -->
+    <section id="projects" class="projects-v2">
+        <div class="container">
+            <div class="projects-v2__header">
+                <p class="section-kicker">05 / PROJECTS</p>
+                <h2 class="projects-v2__title"><i data-lucide="rocket"></i> Things I've <span class="gradient-text">built.</span></h2>
+                <p class="projects-v2__desc">Selected projects that combine strong fundamentals with practical AI, cloud
+                    and data science.</p>
             </div>
-          </article>
+
+            <div class="projects-v2__grid">
+                <!-- Project 1 -->
+                <div class="project-v2-card">
+                    <div class="project-v2-card__header">
+                        <div class="project-v2-card__icon-box">
+                            <i data-lucide="folder-search"></i>
+                        </div>
+                        <div class="project-v2-card__meta">
+                            <span class="project-v2-card__org">AICTE ● IBM</span>
+                            <h3 class="project-v2-card__title">Interview Trainer Agent</h3>
+                        </div>
+                        <div class="project-v2-card__link-box">
+                            <i data-lucide="arrow-up-right"></i>
+                        </div>
+                    </div>
+                    <p class="project-v2-card__desc">An AI-powered interview trainer built using Retrieval-Augmented
+                        Generation (RAG) and IBM Granite models. Delivers personalized Q&A sessions with contextual
+                        feedback, tailored role-specific questions, and scoring.</p>
+                    <div class="project-v2-card__tech">
+                        <span class="tech-chip">IBM Cloud</span>
+                        <span class="tech-chip">Watsonx AI</span>
+                        <span class="tech-chip">RAG</span>
+                        <span class="tech-chip">Python</span>
+                    </div>
+                    <div class="project-v2-card__actions">
+                        <a href="https://github.com/777navin/-Interview-Trainer-Agent-" target="_blank"
+                            class="btn-project btn-project--source">
+                            <i data-lucide="github"></i> Source
+                        </a>
+                        <a href="#" class="btn-project btn-project--case">
+                            <i data-lucide="external-link"></i> Case study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-v2-card">
+                    <div class="project-v2-card__header">
+                        <div class="project-v2-card__icon-box">
+                            <i data-lucide="folder-search"></i>
+                        </div>
+                        <div class="project-v2-card__meta">
+                            <span class="project-v2-card__org">SHELL ● AICTE</span>
+                            <h3 class="project-v2-card__title">AQI Prediction</h3>
+                        </div>
+                        <div class="project-v2-card__link-box">
+                            <i data-lucide="arrow-up-right"></i>
+                        </div>
+                    </div>
+                    <p class="project-v2-card__desc">Predicted Air Quality Index using machine learning models with
+                        93.85% accuracy. Performed detailed EDA, feature engineering, and benchmarked multiple
+                        classifiers for optimal performance.</p>
+                    <div class="project-v2-card__tech">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">Scikit-Learn</span>
+                        <span class="tech-chip">Pandas</span>
+                        <span class="tech-chip">Jupyter</span>
+                    </div>
+                    <div class="project-v2-card__actions">
+                        <a href="https://github.com/777navin/Air-quality-Prediction-AICTE-cycle-4" target="_blank"
+                            class="btn-project btn-project--source">
+                            <i data-lucide="github"></i> Source
+                        </a>
+                        <a href="#" class="btn-project btn-project--case">
+                            <i data-lucide="external-link"></i> Case study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-v2-card">
+                    <div class="project-v2-card__header">
+                        <div class="project-v2-card__icon-box">
+                            <i data-lucide="folder-search"></i>
+                        </div>
+                        <div class="project-v2-card__meta">
+                            <span class="project-v2-card__org">VOIS ● AICTE ● EDUNET</span>
+                            <h3 class="project-v2-card__title">Netflix Data Analysis</h3>
+                        </div>
+                        <div class="project-v2-card__link-box">
+                            <i data-lucide="arrow-up-right"></i>
+                        </div>
+                    </div>
+                    <p class="project-v2-card__desc">Major internship project — end-to-end EDA of the Netflix catalogue:
+                        genre trends, release patterns, country-level breakdowns, and insight generation pipelines.</p>
+                    <div class="project-v2-card__tech">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">Pandas</span>
+                        <span class="tech-chip">Matplotlib</span>
+                        <span class="tech-chip">Jupyter</span>
+                    </div>
+                    <div class="project-v2-card__actions">
+                        <a href="https://github.com/777navin/VOIS_AICTE_Oct2025_Navinkumar_Major_Netflix_Data_Analysis"
+                            target="_blank" class="btn-project btn-project--source">
+                            <i data-lucide="github"></i> Source
+                        </a>
+                        <a href="#" class="btn-project btn-project--case">
+                            <i data-lucide="external-link"></i> Case study
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-v2-card">
+                    <div class="project-v2-card__header">
+                        <div class="project-v2-card__icon-box">
+                            <i data-lucide="folder-search"></i>
+                        </div>
+                        <div class="project-v2-card__meta">
+                            <span class="project-v2-card__org">VOIS ● AICTE</span>
+                            <h3 class="project-v2-card__title">Conversational Analytics</h3>
+                        </div>
+                        <div class="project-v2-card__link-box">
+                            <i data-lucide="arrow-up-right"></i>
+                        </div>
+                    </div>
+                    <p class="project-v2-card__desc">Internship workspace exploring LLM-powered conversational analytics
+                        on real datasets — Airbnb & more. Covers EDA, visualization, and LLM tooling integration.</p>
+                    <div class="project-v2-card__tech">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">LLMs</span>
+                        <span class="tech-chip">Pandas</span>
+                        <span class="tech-chip">Jupyter</span>
+                    </div>
+                    <div class="project-v2-card__actions">
+                        <a href="https://github.com/777navin/VOIS_AICTE_Oct2025_Navinkumar" target="_blank"
+                            class="btn-project btn-project--source">
+                            <i data-lucide="github"></i> Source
+                        </a>
+                        <a href="#" class="btn-project btn-project--case">
+                            <i data-lucide="external-link"></i> Case study
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-v2__footer">
+                <a href="https://github.com/777navin" target="_blank" class="btn-more-github">
+                    <i data-lucide="github"></i> More on GitHub
+                </a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- ACHIEVEMENTS -->
-      <section id="achievements" class="glass reveal" aria-labelledby="achievements-heading">
-        <div class="section-header">
-          <h2 id="achievements-heading">Achievements</h2>
-          <div style="color:var(--muted);font-size:13px">Recognition & milestones</div>
+    <div class="accent-divider"></div>
+
+    <!-- Experience Section - Redesigned V2 -->
+    <section id="experience" class="experience-v2">
+        <div class="container">
+            <div class="experience-v2__header">
+                <p class="section-kicker">06 / EXPERIENCE</p>
+                <h2 class="experience-v2__title"><i data-lucide="briefcase"></i> Work <span class="gradient-text">History.</span></h2>
+                <p class="experience-v2__desc">Internships and industrial training focused on AI, Cloud and Data
+                    Science.</p>
+            </div>
+
+            <div class="experience-v2__timeline">
+                <div class="timeline-v2-line"></div>
+
+                <!-- Card 1: Vodafone Idea (Left) -->
+                <div class="timeline-v2-item timeline-v2-item--left">
+                    <div class="timeline-v2-dot"></div>
+                    <div class="experience-v2-card">
+                        <div class="experience-v2-card__header">
+                            <div class="experience-v2-card__icon-box">
+                                <i data-lucide="briefcase"></i>
+                            </div>
+                            <div class="experience-v2-card__meta">
+                                <h3 class="experience-v2-card__company">Vodafone Idea (VOIS)</h3>
+                                <span class="experience-v2-card__org">AICTE — Edunet</span>
+                            </div>
+                        </div>
+                        <div class="experience-v2-card__body">
+                            <h4 class="experience-v2-card__role">Intern — Conversational Data Analytics with LLMs</h4>
+                            <div class="experience-v2-card__date">
+                                <i data-lucide="calendar"></i> Sep 2025 — Oct 2025
+                            </div>
+                            <p class="experience-v2-card__desc">Built data analysis projects on Airbnb & Netflix
+                                datasets — performed EDA, visualization, and conversational insights generation using
+                                Python and LLM tooling.</p>
+                            <a href="https://drive.google.com/file/d/1S8vHd1KZn2of1sZRcqiyE_VbyMS6Qxin/view?usp=sharing"
+                                target="_blank" class="experience-v2-card__link">
+                                <i data-lucide="shield-check"></i> Verify Certification
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: IBM (Right) -->
+                <div class="timeline-v2-item timeline-v2-item--right">
+                    <div class="timeline-v2-dot"></div>
+                    <div class="experience-v2-card">
+                        <div class="experience-v2-card__header">
+                            <div class="experience-v2-card__icon-box">
+                                <i data-lucide="briefcase"></i>
+                            </div>
+                            <div class="experience-v2-card__meta">
+                                <h3 class="experience-v2-card__company">IBM</h3>
+                                <span class="experience-v2-card__org">AICTE — Edunet</span>
+                            </div>
+                        </div>
+                        <div class="experience-v2-card__body">
+                            <h4 class="experience-v2-card__role">Intern — AI & Cloud</h4>
+                            <div class="experience-v2-card__date">
+                                <i data-lucide="calendar"></i> Jul 2025 — Aug 2025
+                            </div>
+                            <p class="experience-v2-card__desc">Developed production-grade AI workflows on IBM Cloud
+                                using Watsonx — including the Interview Trainer Agent with RAG and Granite foundation
+                                models.</p>
+                            <a href="https://drive.google.com/file/d/1kIp7KlCOEMr1PpNjiBpyJ08Q54geoTQT/view?usp=sharing"
+                                target="_blank" class="experience-v2-card__link">
+                                <i data-lucide="shield-check"></i> Verify Certification
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Shell (Left) -->
+                <div class="timeline-v2-item timeline-v2-item--left">
+                    <div class="timeline-v2-dot"></div>
+                    <div class="experience-v2-card">
+                        <div class="experience-v2-card__header">
+                            <div class="experience-v2-card__icon-box">
+                                <i data-lucide="briefcase"></i>
+                            </div>
+                            <div class="experience-v2-card__meta">
+                                <h3 class="experience-v2-card__company">Shell</h3>
+                                <span class="experience-v2-card__org">AICTE — Edunet</span>
+                            </div>
+                        </div>
+                        <div class="experience-v2-card__body">
+                            <h4 class="experience-v2-card__role">Intern — AI & Data Analytics</h4>
+                            <div class="experience-v2-card__date">
+                                <i data-lucide="calendar"></i> Feb 2025 — Mar 2025
+                            </div>
+                            <p class="experience-v2-card__desc">Built an AQI prediction model leveraging Random Forest
+                                classifiers, achieving 93.85% accuracy. Delivered EDA, cleaning, and feature engineering
+                                pipelines.</p>
+                            <a href="https://drive.google.com/file/d/1G5n8XertJS-lScHjuvN0ZzIP61IwAZnO/view?usp=sharing"
+                                target="_blank" class="experience-v2-card__link">
+                                <i data-lucide="shield-check"></i> Verify Certification
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div class="accent-divider"></div>
+
+    <!-- Responsibilities Section - Redesigned V2 -->
+    <section id="leadership" class="responsibilities-v2">
+        <div class="container">
+            <div class="responsibilities-v2__header">
+                <p class="section-kicker">07 / LEADERSHIP &amp; ACHIEVEMENTS</p>
+                <h2 class="responsibilities-v2__title"><i data-lucide="users"></i> Leadership &amp; <span class="gradient-text">Impact.</span></h2>
+                <p class="responsibilities-v2__desc">Leadership experience, ownership, and student impact within the
+                    academic ecosystem.</p>
+            </div>
+
+            <div class="responsibilities-v2__grid">
+                <!-- Card 1: Student Coordinator -->
+                <div class="responsibility-v2-card">
+                    <div class="responsibility-v2-card__header">
+                        <div class="responsibility-v2-card__icon-box">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <div class="responsibility-v2-card__meta">
+                            <span class="responsibility-v2-card__org">T&P DEPARTMENT ● GHRCEM</span>
+                            <h3 class="responsibility-v2-card__title">Student Coordinator <i data-lucide="badge-check"
+                                    class="verified-icon"></i></h3>
+                        </div>
+                    </div>
+                    <div class="responsibility-v2-card__date">
+                        <i data-lucide="calendar"></i> May 2025 — Present
+                    </div>
+                    <p class="responsibility-v2-card__desc">Primary liaison between the T&P Cell and students.
+                        Coordinated placement drives, mock tests, and workshops for 2026-2027 batches while managing
+                        documentation accuracy.</p>
+                    <div class="responsibility-v2-card__tags">
+                        <span class="tech-chip">Leadership</span>
+                        <span class="tech-chip">Coordination</span>
+                        <span class="tech-chip">Placement Ops</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Peer Teacher -->
+                <div class="responsibility-v2-card">
+                    <div class="responsibility-v2-card__header">
+                        <div class="responsibility-v2-card__icon-box">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <div class="responsibility-v2-card__meta">
+                            <span class="responsibility-v2-card__org">GHRCEM PUNE ● VOLUNTEERING</span>
+                            <h3 class="responsibility-v2-card__title">Peer Teacher <i data-lucide="badge-check"
+                                    class="verified-icon"></i></h3>
+                        </div>
+                    </div>
+                    <div class="responsibility-v2-card__date">
+                        <i data-lucide="calendar"></i> Mar 2025 — Apr 2025 | For Education
+                    </div>
+                    <p class="responsibility-v2-card__desc">Volunteering as a peer teacher to support students in
+                        mastering programming. Organized regular sessions on DSA and coding practice, mentoring 20+
+                        peers and fostering a culture of knowledge sharing.</p>
+                    <div class="responsibility-v2-card__tags">
+                        <span class="tech-chip">DSA</span>
+                        <span class="tech-chip">Mentorship</span>
+                        <span class="tech-chip">Teaching</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="achievements">
-          <div class="ach">
-            <h4>Top 7 in College Ranking</h4>
-            <p>Consistent academic performance and project contributions.</p>
-          </div>
+    <div class="accent-divider"></div>
 
-          <div class="ach">
-            <h4>Active Competitive Programmer</h4>
-            <p>Regular contest participation and problem solving practice.</p>
-          </div>
+    <!-- Achievements Section integrated into Leadership for visual flow -->
+    <section class="achievements-v2">
+        <div class="container">
+            <div class="achievements-v2__header">
+                <p class="section-kicker">08 / GLOBAL STATS</p>
+                <h2 class="achievements-v2__title"><i data-lucide="bar-chart-3"></i> Numbers that tell the <span class="gradient-text">story.</span></h2>
+            </div>
 
-          <div class="ach">
-            <h4>Solved 300+ DSA problems</h4>
-            <p>Extensive practice across algorithms and data structures.</p>
-          </div>
+            <div class="achievements-v2__grid">
+                <!-- Stat 1: LeetCode -->
+                <div class="achievement-v2-card">
+                    <div class="achievement-v2-card__icon-box">
+                        <img src="https://cdn.simpleicons.org/leetcode/22d3ee" alt="LeetCode"
+                            style="width: 20px; height: 20px;">
+                    </div>
+                    <div class="achievement-v2-card__stat">1712</div>
+                    <div class="achievement-v2-card__label">LEETCODE RATING</div>
+                    <p class="achievement-v2-card__desc">Top 12.48% globally • @navin_aaryan_777</p>
+                </div>
 
-          <div class="ach">
-            <h4>Open Source Contributions</h4>
-            <p>Contributed to tools and libraries; active on GitHub.</p>
-          </div>
+                <!-- Stat 2: Codeforces -->
+                <div class="achievement-v2-card">
+                    <div class="achievement-v2-card__icon-box">
+                        <img src="https://cdn.simpleicons.org/codeforces/22d3ee" alt="Codeforces"
+                            style="width: 20px; height: 20px;">
+                    </div>
+                    <div class="achievement-v2-card__stat">1427</div>
+                    <div class="achievement-v2-card__label">CODEFORCES RATING</div>
+                    <p class="achievement-v2-card__desc">Specialist • @navin_777</p>
+                </div>
 
-          <div class="ach">
-            <h4>Hackathon Participant</h4>
-            <p>Built prototypes under tight deadlines and collaborated with teams.</p>
-          </div>
+                <!-- Stat 3: CodeChef -->
+                <div class="achievement-v2-card">
+                    <div class="achievement-v2-card__icon-box">
+                        <img src="https://cdn.simpleicons.org/codechef/22d3ee" alt="CodeChef"
+                            style="width: 20px; height: 20px;">
+                    </div>
+                    <div class="achievement-v2-card__stat">1641</div>
+                    <div class="achievement-v2-card__label">CODECHEF RATING</div>
+                    <p class="achievement-v2-card__desc">Div 2 (Coder) • @navin_777</p>
+                </div>
 
-          <div class="ach">
-            <h4>Technical Blog</h4>
-            <p>Writes about algorithms, optimization, and web development.</p>
-          </div>
+                <!-- Stat 4: GeeksforGeeks -->
+                <div class="achievement-v2-card">
+                    <div class="achievement-v2-card__icon-box">
+                        <img src="https://cdn.simpleicons.org/geeksforgeeks/22d3ee" alt="GFG"
+                            style="width: 20px; height: 20px;">
+                    </div>
+                    <div class="achievement-v2-card__stat">203</div>
+                    <div class="achievement-v2-card__label">GEEKSFORGEEKS</div>
+                    <p class="achievement-v2-card__desc">Solved (Score: 704) • Navinkumar Tumma</p>
+                </div>
 
-          <div class="ach">
-            <h4>Mentor</h4>
-            <p>Guides juniors on DSA and contest strategies.</p>
-          </div>
+                <!-- Stat 5: HackerRank -->
+                <div class="achievement-v2-card">
+                    <div class="achievement-v2-card__icon-box">
+                        <img src="https://cdn.simpleicons.org/hackerrank/22d3ee" alt="HackerRank"
+                            style="width: 20px; height: 20px;">
+                    </div>
+                    <div class="achievement-v2-card__stat">5★</div>
+                    <div class="achievement-v2-card__label">HACKERRANK</div>
+                    <p class="achievement-v2-card__desc">Problem Solving • @myf8426</p>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="glass reveal" aria-labelledby="contact-heading">
-        <div class="section-header">
-          <h2 id="contact-heading">Contact</h2>
-          <div style="color:var(--muted);font-size:13px">Let's connect</div>
+    <div class="accent-divider"></div>
+
+    <!-- Certifications Section - Redesigned V2 -->
+    <section id="certifications" class="certifications-v2">
+        <div class="container">
+            <div class="certifications-v2__header">
+                <p class="section-kicker">09 / CERTIFICATIONS</p>
+                <h2 class="certifications-v2__title"><i data-lucide="award"></i> Continuously <span class="gradient-text">learning.</span></h2>
+                <p class="certifications-v2__desc">Credentials earned across Oracle Cloud, IBM, AWS and beyond.</p>
+            </div>
+
+            <div class="cert-groups-container">
+                <!-- Group 1: Oracle -->
+                <div class="cert-group cert-group--oracle">
+                    <div class="cert-group__header">
+                        <span class="cert-group__brand">Oracle</span>
+                        <span class="cert-group__category">Cloud Infrastructure (OCI)</span>
+                    </div>
+                    <div class="cert-group__grid">
+                        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=E8DD1E6D80F3016183D74AF8EC9C8BFB95FBC6AD2CDC3E57CBAA9C8FC99E1B96"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="award"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">ORACLE</span>
+                                <h3 class="cert-v2-card__name">AI Foundations Associate</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=8667F06D88C73567BAC324AF63C2262CAD89AD8B94D61FD631A97F727F56F63B"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">ORACLE</span>
+                                <h3 class="cert-v2-card__name">Generative AI Professional</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=F1968D7F4655036B1566770B90CABCC4DEDA004199C38D7BA1FFB739C93353CA"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="search-code"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">ORACLE</span>
+                                <h3 class="cert-v2-card__name">AI Vector Search Professional</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=0025E7079ED21F1BDE932FD6ED9BCE7836C2C6D7115DF0D4C7A4F177B2957C99"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="database"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">ORACLE</span>
+                                <h3 class="cert-v2-card__name">Data Science Professional</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Group 2: IBM -->
+                <div class="cert-group cert-group--ibm">
+                    <div class="cert-group__header">
+                        <span class="cert-group__brand">IBM</span>
+                        <span class="cert-group__category">Certifications</span>
+                    </div>
+                    <div class="cert-group__grid">
+                        <a href="https://www.credly.com/badges/736c9ca4-82f5-4335-9b3f-92bda5611281/public_url"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="brain-circuit"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">IBM</span>
+                                <h3 class="cert-v2-card__name">Enterprise-grade AI</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://www.credly.com/badges/c272f1f2-bf98-4e4e-98fb-6b49ed329bc4/public_url"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="cpu"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">IBM</span>
+                                <h3 class="cert-v2-card__name">Artificial Intelligence</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://www.credly.com/badges/3e7f0fd0-5b11-485d-aac4-e4be00cf44e2/public_url"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="cloud"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">IBM</span>
+                                <h3 class="cert-v2-card__name">Journey to Cloud</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Group 3: AWS -->
+                <div class="cert-group cert-group--aws">
+                    <div class="cert-group__header">
+                        <span class="cert-group__brand">AWS</span>
+                        <span class="cert-group__category">Certifications</span>
+                    </div>
+                    <div class="cert-group__grid">
+                        <a href="https://drive.google.com/file/d/1WMCOdSc4Db12M67VzfSEZiCKbUfQUuzq/view?usp=sharing"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">AWS</span>
+                                <h3 class="cert-v2-card__name">Cloud Practitioner Essentials</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1RwNXCwGkKtVQyHfbEEBFpzgQj5MwTXrr/view?usp=sharing"
+                            target="_blank" class="cert-v2-card">
+                            <div class="cert-v2-card__icon-box">
+                                <i data-lucide="flame"></i>
+                            </div>
+                            <div class="cert-v2-card__content">
+                                <span class="cert-v2-card__brand">AWS</span>
+                                <h3 class="cert-v2-card__name">ML & AI Fundamentals</h3>
+                                <span class="cert-v2-card__year">2025</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="contact-grid">
-          <div class="contact-card">
-            <strong>Email</strong>
-            <a href="mailto:navin@example.com">navin@example.com</a>
-            <p style="color:var(--muted)">Prefer email for project inquiries and collaboration.</p>
-          </div>
+    <div class="accent-divider"></div>
 
-          <div class="contact-card">
-            <strong>GitHub</strong>
-            <a href="https://github.com/777navin" target="_blank" rel="noopener noreferrer">github.com/777navin</a>
-            <p style="color:var(--muted)">Repositories, contributions, and project code.</p>
-          </div>
+    <!-- Contact Section - Redesigned V2 -->
+    <section id="contact" class="contact-v2">
+        <div class="container">
+            <div class="contact-v2__centered-wrapper" style="display: flex; justify-content: center; max-width: 600px; margin: 0 auto;">
+                <div class="contact-v2__info" style="width: 100%;">
+                    <p class="section-kicker">10 / RESTOCK</p>
+                    <h2 class="contact-v2__title"><i data-lucide="mail"></i> Let's build something <span class="gradient-text">great.</span></h2>
+                    <p class="contact-v2__desc">Open to internships, freelance projects and interesting collaborations.
+                        Reach out — I read everything.</p>
+                    
+                    <div class="contact__resume-info">
+                        <a href="#contact" class="resume-request">
+                            <i data-lucide="file-text"></i> Resume available on request
+                        </a>
+                    </div>
 
-          <div class="contact-card">
-            <strong>LinkedIn</strong>
-            <a href="#" aria-label="LinkedIn profile (placeholder)">linkedin.com/in/your-profile</a>
-            <p style="color:var(--muted)">Profile placeholder — replace with your LinkedIn URL.</p>
-          </div>
+                    <div class="contact-v2__links">
+                        <div class="contact-v2-link-card">
+                            <div class="contact-v2-link-card__icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-v2-link-card__content">
+                                <span class="contact-v2-link-card__label">EMAIL</span>
+                                <span class="contact-v2-link-card__value">myf8426@gmail.com</span>
+                            </div>
+                            <button class="btn-copy" onclick="navigator.clipboard.writeText('myf8426@gmail.com')">
+                                <i data-lucide="copy"></i>
+                            </button>
+                        </div>
+
+                        <div class="contact-v2-link-card">
+                            <div class="contact-v2-link-card__icon">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-v2-link-card__content">
+                                <span class="contact-v2-link-card__label">PHONE</span>
+                                <span class="contact-v2-link-card__value">+91 83297 60179</span>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/918329760179?text=Hi%20Navin%2C%20I%20saw%20your%20portfolio" target="_blank" class="btn-whatsapp" style="margin-top: 0.5rem; margin-bottom: 1.5rem; width: fit-content;">
+                            <i data-lucide="message-circle"></i> Chat on WhatsApp
+                        </a>
+
+                        <div class="contact-v2__social-row">
+                            <a href="https://github.com/777navin" target="_blank" class="contact-v2-social-card">
+                                <i data-lucide="github"></i> GitHub
+                            </a>
+                            <a href="https://linkedin.com/in/navinkumar-t-245b46336" target="_blank" class="contact-v2-social-card">
+                                <i data-lucide="linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <footer class="glass reveal" role="contentinfo">
-        <div style="font-weight:600">Navin</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:6px">Software Engineer • Competitive Programmer</div>
-      </footer>
-    </main>
-  </div>
+    <!-- Footer - Redesigned V2 -->
+    <footer class="footer-v2">
+        <div class="container">
+            <div class="footer-v2__content">
+                <div class="footer-v2__left">
+                    <span class="brand-name">Navinkumar</span> <span class="cyan">.dev</span> <span class="copyright">©
+                        2026</span>
+                </div>
+                <div class="footer-v2__center">
+                    Built with <i data-lucide="heart" class="heart-icon"></i>, caffeine & clean algorithms.
+                </div>
+                <div class="footer-v2__right">
+                    <a href="https://github.com/777navin" target="_blank" class="footer-v2-social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.153-1.11-1.46-1.11-1.46-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/navinkumar-t-245b46336" target="_blank"
+                        class="footer-v2-social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:myf8426@gmail.com" class="footer-v2-social-icon">
+                        <i data-lucide="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <script>
-    /* =========================
-       Typing animation (hero)
-       ========================= */
-    (function(){
-      const phrases = ["DSA", "CP", "Web Dev", "Algorithms", "Problem Solving"];
-      const el = document.getElementById('typing');
-      const cursor = document.getElementById('cursor');
-      let pIndex = 0, charIndex = 0, deleting = false;
-      const typeSpeed = 90;
-      const deleteSpeed = 40;
-      const pause = 900;
-
-      function tick(){
-        const current = phrases[pIndex];
-        if(!deleting){
-          el.textContent = current.slice(0, ++charIndex);
-          if(charIndex === current.length){
-            deleting = true;
-            setTimeout(tick, pause);
-            return;
-          }
-        } else {
-          el.textContent = current.slice(0, --charIndex);
-          if(charIndex === 0){
-            deleting = false;
-            pIndex = (pIndex + 1) % phrases.length;
-          }
-        }
-        const delay = deleting ? deleteSpeed : typeSpeed;
-        setTimeout(tick, delay);
-      }
-
-      // Blink cursor
-      setInterval(()=> {
-        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-      }, 500);
-
-      // Start after small delay
-      setTimeout(tick, 600);
-    })();
-
-    /* =========================
-       Scroll reveal (fade-in)
-       ========================= */
-    (function(){
-      const reveals = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-            // optionally unobserve to avoid re-trigger
-            io.unobserve(entry.target);
-          }
-        });
-      }, {threshold: 0.12});
-      reveals.forEach(r => io.observe(r));
-    })();
-
-    /* =========================
-       Add subtle hover glow for cards (dynamic)
-       ========================= */
-    (function(){
-      // Add accent border element to each glass card for subtle neon accent
-      document.querySelectorAll('.glass').forEach(card=>{
-        const accent = document.createElement('div');
-        accent.className = 'accent-border';
-        card.style.position = 'relative';
-        card.appendChild(accent);
-      });
-
-      // Add hover glow effect for project and skill cards
-      const hoverTargets = document.querySelectorAll('.project, .skill, .ach, .contact-card, .profile-card');
-      hoverTargets.forEach(el=>{
-        el.addEventListener('mouseenter', ()=> {
-          el.style.boxShadow = '0 30px 80px rgba(0,160,255,0.08)';
-          el.style.borderColor = 'rgba(0,200,255,0.12)';
-        });
-        el.addEventListener('mouseleave', ()=> {
-          el.style.boxShadow = '';
-          el.style.borderColor = '';
-        });
-      });
-    })();
-
-    /* =========================
-       Smooth scroll offset fix for anchor links (if needed)
-       ========================= */
-    (function(){
-      // If you want to offset for sticky header, you can adjust scroll position
-      const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', (e)=>{
-          const targetId = a.getAttribute('href').slice(1);
-          if(!targetId) return;
-          const target = document.getElementById(targetId);
-          if(!target) return;
-          e.preventDefault();
-          const top = target.getBoundingClientRect().top + window.scrollY - Math.min(headerHeight, 24);
-          window.scrollTo({top, behavior:'smooth'});
-        });
-      });
-    })();
-
-    /* =========================
-       Small accessibility: focus outlines for keyboard users
-       ========================= */
-    (function(){
-      function handleFirstTab(e) {
-        if (e.key === 'Tab') {
-          document.body.classList.add('user-is-tabbing');
-          window.removeEventListener('keydown', handleFirstTab);
-        }
-      }
-      window.addEventListener('keydown', handleFirstTab);
-    })();
-
-    /* =========================
-       Ready for GitHub Pages
-       - All assets inline, no frameworks
-       ========================= */
-  </script>
+    <script src="script-premium.js"></script>
 </body>
+
 </html>
-```
