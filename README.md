@@ -1,51 +1,118 @@
-🌐 Navin Kumar | Portfolio
+# 🚀 Navin Kumar | Portfolio
 
-🚀 Welcome to my personal portfolio website built using HTML, CSS & JavaScript
+A modern, high-performance personal portfolio showcasing my work in **AI, Data Structures & Algorithms, and Full Stack Development**.
 
-🔗 Live Website: https://777navin.github.io
+🔗 **Live Website:** https://777navin.github.io
 
-👨‍💻 About Me
+---
 
-Hi, I'm Navin Kumar, a passionate Software Engineer & DSA Enthusiast
+## ✨ About Me
 
-💻 Strong in Data Structures & Algorithms
-🚀 Solving LeetCode Problems Daily
-🎯 Focused on placements & software development
-⚡ Love building projects + clean UI
-🛠️ Tech Stack
-🌐 HTML5
-🎨 CSS3 (Modern UI / Glassmorphism)
-⚡ JavaScript
-💻 C++ (DSA)
-📂 Project Structure
+Hi, I'm **Navin Kumar**, a passionate Software Engineer and Competitive Programmer.
+
+* 💻 Strong in **Data Structures & Algorithms (C++)**
+* 🤖 Focused on **AI / Machine Learning / RAG Systems**
+* 🌐 Building **real-world full-stack applications**
+* ⚡ Consistently solving problems & improving daily
+
+---
+
+## 🛠️ Tech Stack
+
+**Languages**
+
+* C++, Python, Java, C#
+
+**Web**
+
+* HTML, CSS, JavaScript
+
+**AI / ML**
+
+* Machine Learning, LLMs, RAG, NLP
+
+**Databases**
+
+* MySQL, MongoDB
+
+**Cloud**
+
+* AWS, IBM Cloud
+
+**Tools**
+
+* Git, GitHub, VS Code, Jupyter Notebook
+
+---
+
+## 🚀 Features
+
+* ⚡ Modern **Dark UI + Neon Glow Design**
+* 🎯 Fully **Responsive & Optimized**
+* 🧩 Smooth **Animations & Micro-interactions**
+* 📊 Competitive Programming Stats
+* 📁 Project Showcase with Case Studies
+* 📬 Contact Section with Direct Reach
+
+---
+
+## 📂 Project Structure
+
+```
+.
 ├── index.html
-├── style.css (if added)
-├── script.js (if added)
-└── assets/
-✨ Features
-🔥 Modern UI Design
-💎 Glassmorphism effects
-📱 Responsive layout
-⚡ Fast & lightweight
-🌐 Deployed using GitHub Pages
-📸 Preview
+├── style-premium.css
+├── script-premium.js
+├── hacker-portrait.png
+└── README.md
+```
 
-👉 Visit Live: https://777navin.github.io
+---
 
-📈 Future Improvements
-Add project showcase section
-Add animations (GSAP / Framer Motion)
-Add contact form
-Add resume download option
-🤝 Connect With Me
-💼 LinkedIn: https://www.linkedin.com/in/navinkumar-t-245b46336/
-💻 GitHub: https://github.com/777navin
-⭐ Support
+## 📌 Highlights
+
+* 🧠 Solved **500+ DSA Problems**
+* 🏆 Top **0.5% Competitive Programming**
+* 📊 Strong presence on LeetCode, Codeforces, CodeChef
+* 💼 Internships in **AI, Cloud & Data Analytics**
+
+---
+
+## 📬 Contact
+
+* 📧 Email: [myf8426@gmail.com](mailto:myf8426@gmail.com)
+* 📱 Phone: +91 83297 60179
+* 💼 LinkedIn: https://www.linkedin.com
+* 💻 GitHub: https://github.com/777navin
+
+👉 *Resume available on request*
+
+---
+
+## 🏁 Run Locally
+
+```bash
+git clone https://github.com/777navin/777navin.github.io.git
+cd 777navin.github.io
+open index.html
+```
+
+---
+
+## 🌟 Support
 
 If you like this project:
-👉 Star ⭐ the repo
-👉 Share with friends
 
-🏁 Final Note
+* ⭐ Star the repo
+* 🔁 Share with others
+* 💬 Connect with me
 
-"Code. Build. Improve. Repeat." 🔥
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+> 💡 *"Code. Build. Improve. Repeat."*
