@@ -3687,6 +3687,7 @@ section:not(.hero) {
 .cert-group--ibm { border-color: rgba(59, 130, 246, 0.2); }
 .cert-group--aws { border-color: rgba(245, 158, 11, 0.2); }
 .cert-group--codehelp { border-color: rgba(34, 211, 238, 0.2); }
+.cert-group--udemy { border-color: rgba(164, 53, 240, 0.2); }
 
 .cert-group__header {
     margin-bottom: 2rem;
@@ -3704,6 +3705,7 @@ section:not(.hero) {
 .cert-group--ibm .cert-group__brand { color: #3b82f6; }
 .cert-group--aws .cert-group__brand { color: #f59e0b; }
 .cert-group--codehelp .cert-group__brand { color: #22d3ee; }
+.cert-group--udemy .cert-group__brand { color: #a435f0; }
 
 .cert-group__category {
     font-size: 1.1rem;
@@ -3720,10 +3722,10 @@ section:not(.hero) {
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    padding: 1.5rem;
+    padding: 1rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    border-radius: 12px;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
@@ -3738,10 +3740,11 @@ section:not(.hero) {
 .cert-group--ibm .cert-v2-card:hover { border-color: rgba(59, 130, 246, 0.4); }
 .cert-group--aws .cert-v2-card:hover { border-color: rgba(245, 158, 11, 0.4); }
 .cert-group--codehelp .cert-v2-card:hover { border-color: rgba(34, 211, 238, 0.4); }
+.cert-group--udemy .cert-v2-card:hover { border-color: rgba(164, 53, 240, 0.4); }
 
 .cert-v2-card__icon-box {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
@@ -3755,6 +3758,7 @@ section:not(.hero) {
 .cert-group--ibm .cert-v2-card__icon-box i { color: #3b82f6; }
 .cert-group--aws .cert-v2-card__icon-box i { color: #f59e0b; }
 .cert-group--codehelp .cert-v2-card__icon-box i { color: #22d3ee; }
+.cert-group--udemy .cert-v2-card__icon-box i { color: #a435f0; }
 
 .cert-v2-card:hover .cert-v2-card__icon-box {
     background: rgba(255, 255, 255, 0.06);
@@ -3783,7 +3787,7 @@ section:not(.hero) {
 }
 
 .cert-v2-card__name {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
     margin: 0 0 0.4rem 0;
@@ -3793,6 +3797,94 @@ section:not(.hero) {
 .cert-v2-card__year {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================================================================
+   CERTIFICATIONS ROADMAP (VERTICAL)
+   ================================================================ */
+.cert-roadmap-container {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 3rem;
+}
+
+.cert-roadmap__track {
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #22d3ee, #a855f7, transparent);
+    opacity: 0.2;
+}
+
+.cert-roadmap__section {
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.cert-roadmap__section:last-child {
+    margin-bottom: 0;
+}
+
+.cert-roadmap__marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #000;
+    border: 3px solid var(--marker-color, #22d3ee);
+    box-shadow: 0 0 15px var(--marker-glow, rgba(34, 211, 238, 0.6));
+    z-index: 2;
+}
+
+.cert-roadmap__header {
+    margin-bottom: 2rem;
+}
+
+.cert-roadmap__group-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--marker-color, #fff);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cert-roadmap__group-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cert-roadmap__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+/* Roadmap Markers by Section */
+.cert-roadmap__section--1 { --marker-color: #22d3ee; --marker-glow: rgba(34, 211, 238, 0.6); }
+.cert-roadmap__section--2 { --marker-color: #ef4444; --marker-glow: rgba(239, 68, 68, 0.6); }
+.cert-roadmap__section--3 { --marker-color: #3b82f6; --marker-glow: rgba(59, 130, 246, 0.6); }
+.cert-roadmap__section--4 { --marker-color: #a435f0; --marker-glow: rgba(164, 53, 240, 0.6); }
+
+/* Responsive adjustments for Roadmap */
+@media (max-width: 768px) {
+    .cert-roadmap-container {
+        padding-left: 2rem;
+    }
+    .cert-roadmap__marker {
+        left: -1.5rem;
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+    }
+    .cert-roadmap__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ================================================================
